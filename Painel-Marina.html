@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel Marina · NYO × Courchevel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --accent:#2D3142;
+    --accent-soft:#3F4456;
+    --muted:#6B7080;
+    --light:#E5E7EB;
+    --bg:#FAFAFB;
+    --card:#FFFFFF;
+    --highlight:#F4F5F7;
+    --tag-global:#1F2937;
+    --tag-cvc:#7A2E2E;
+    --tag-define:#7A6A2E;
+    --ok:#2E7A4E;
+    --warn:#7A5C2E;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--accent);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+  a{color:inherit;text-decoration:none}
+
+  .topbar{background:var(--accent);color:#fff;padding:16px 0;border-bottom:1px solid #1B1E2A}
+  .topbar .wrap{max-width:1200px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between}
+  .topbar .brand{font-weight:800;font-size:14px;letter-spacing:0.05em;text-transform:uppercase}
+  .topbar .brand small{font-weight:500;color:#B8BCC8;display:block;font-size:10px;letter-spacing:0.08em;margin-top:2px}
+  .topbar .meta{font-size:11px;color:#B8BCC8;letter-spacing:0.04em;text-align:right}
+
+  .hero{background:#fff;border-bottom:1px solid var(--light);padding:36px 0 24px}
+  .hero .wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+  .hero h1{font-size:34px;font-weight:800;color:var(--accent);letter-spacing:-0.01em;margin-bottom:6px}
+  .hero p{color:var(--muted);font-size:14px;max-width:720px}
+
+  .tabs{max-width:1200px;margin:0 auto;padding:0 32px;display:flex;gap:0;border-bottom:1px solid var(--light);background:#fff}
+  .tab{padding:14px 20px;font-weight:600;font-size:13px;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;letter-spacing:0.02em;text-transform:uppercase;transition:all 0.15s ease;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+  .tab:hover{color:var(--accent)}
+  .tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+
+  .panel{max-width:1200px;margin:0 auto;padding:32px;display:none}
+  .panel.active{display:block}
+
+  /* ---------- TIME (TAB 1) ---------- */
+  .section-title{font-size:11px;font-weight:700;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;margin:24px 0 12px;display:flex;align-items:center;gap:12px}
+  .section-title .line{flex:1;height:1px;background:var(--light)}
+  .section-title:first-child{margin-top:0}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
+
+  .card{background:var(--card);border:1px solid var(--light);border-radius:8px;padding:18px 20px;transition:border-color 0.15s ease}
+  .card:hover{border-color:var(--accent)}
+  .card-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:12px}
+  .avatar{width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;letter-spacing:-0.02em}
+  .card-name{font-weight:700;font-size:14.5px;color:var(--accent);line-height:1.25}
+  .card-role{font-size:12px;color:var(--muted);margin-top:2px}
+  .card-body{font-size:13px;color:var(--accent);line-height:1.55}
+  .card-body strong{font-weight:600}
+  .tag{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;border-radius:3px;color:#fff;margin-left:8px;vertical-align:middle}
+  .tag.global{background:var(--tag-global)}
+  .tag.cvc{background:var(--tag-cvc)}
+  .tag.define{background:var(--tag-define)}
+
+  .cobranca{background:var(--highlight);border-left:3px solid var(--accent);padding:10px 14px;margin-top:12px;font-size:12px;color:var(--accent);border-radius:0 4px 4px 0}
+  .cobranca b{font-weight:700;font-size:9.5px;letter-spacing:0.08em;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:3px}
+
+  /* ---------- ESCOPO (TAB 2) ---------- */
+  .pilar{background:var(--card);border:1px solid var(--light);border-radius:10px;margin-bottom:20px;overflow:hidden}
+  .pilar-head{padding:18px 24px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:space-between}
+  .pilar-head h2{font-size:18px;font-weight:700;letter-spacing:-0.01em}
+  .pilar-head .anexo{font-size:10.5px;font-weight:600;letter-spacing:0.1em;color:#B8BCC8;text-transform:uppercase}
+  .pilar-body{padding:20px 24px}
+  .pilar-escopo{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:18px;padding-bottom:14px;border-bottom:1px dashed var(--light)}
+
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  table thead th{text-align:left;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;font-size:10px;padding:10px 12px;border-bottom:2px solid var(--accent)}
+  table tbody td{padding:12px;border-bottom:1px solid var(--light);vertical-align:top;color:var(--accent);line-height:1.5}
+  table tbody tr:last-child td{border-bottom:none}
+  table tbody tr:hover{background:var(--highlight)}
+
+  .pill{display:inline-block;padding:3px 9px;border-radius:99px;font-size:10.5px;font-weight:600;letter-spacing:0.02em;white-space:nowrap}
+  .pill.ok{background:#E6F1EB;color:var(--ok)}
+  .pill.warn{background:#F4ECDA;color:var(--warn)}
+  .pill.future{background:#EAEAEE;color:var(--muted)}
+
+  .datakey{font-weight:600;color:var(--accent)}
+
+  .recurr{background:#fff;border:1px solid var(--light);border-radius:10px;padding:20px 24px;margin-top:24px}
+  .recurr h3{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:14px;text-transform:uppercase;letter-spacing:0.04em}
+  .recurr ul{list-style:none}
+  .recurr li{padding:9px 0;border-bottom:1px dashed var(--light);display:flex;gap:14px;align-items:flex-start;font-size:13px}
+  .recurr li:last-child{border-bottom:none}
+  .recurr .when{font-weight:600;color:var(--accent);min-width:170px;flex-shrink:0}
+  .recurr .what{color:var(--muted)}
+  .recurr .what b{color:var(--accent);font-weight:600}
+
+  .keydates{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:28px}
+  .kd-card{background:#fff;border:1px solid var(--light);border-left:3px solid var(--accent);border-radius:0 6px 6px 0;padding:12px 14px}
+  .kd-card .kd-date{font-size:18px;font-weight:800;color:var(--accent);letter-spacing:-0.01em}
+  .kd-card .kd-label{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.35}
+
+  footer{max-width:1200px;margin:0 auto;padding:30px 32px 50px;color:var(--muted);font-size:11px;border-top:1px solid var(--light);margin-top:30px}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">NYO × Courchevel<small>Painel operacional · Marina</small></div>
+    <div class="meta">Confidencial · Atualizado em 11/05/2026</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Painel da Marina</h1>
+    <p>Quem é quem na operação, o que cada pessoa entrega e o que foi contratado pelo cliente. Use este painel para distribuir cobranças, escalar pendências e dar visibilidade de tudo que tem que sair em cada prazo.</p>
+  </div>
+</section>
+
+<nav class="tabs">
+  <button class="tab active" data-tab="time">01 · Cadeiras da Operação</button>
+  <button class="tab" data-tab="escopo">02 · O que foi contratado</button>
+</nav>
+
+<!-- ============================================================
+     TAB 1: TIME
+============================================================ -->
+<div class="panel active" id="panel-time">
+
+  <div class="section-title">Liderança e estratégia<span class="line"></span></div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-head">
+        <div class="avatar">GS</div>
+        <div>
+          <div class="card-name">Gabriel Soier <span class="tag global">Global NYO</span></div>
+          <div class="card-role">CEO · Estrategista</div>
+        </div>
+      </div>
+      <div class="card-body">
+        Decisões finais. <strong>Produz toda a copy de social media e de anúncios para os 3 empreendimentos.</strong> Aparece em calls estratégicas com cliente (onboarding, momentos sensíveis, check-in mensal).
+      </div>
+      <div class="cobranca"><b>Como cobrar</b>1 mensagem EOD da Marina até 19h em grupo privado dos 2 com blockers, atrasos e decisões pendentes. Call semanal sexta 17h, 30 min.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="avatar">PL</div>
+        <div>
+          <div class="card-name">Pedro Lucena <span class="tag global">Global NYO</span></div>
+          <div class="card-role">Estrategista de Tráfego</div>
+        </div>
+      </div>
+      <div class="card-body">
+        Atua como dupla verificação técnica do trabalho de tráfego (não é o responsável pelo pilar, o Caio é). Entra quando o Caio precisa de validação estratégica ou segunda opinião. Conduz a <strong>busca de 2-3 influencers/mês</strong> para parcerias permuta-cortesia (Allure).
+      </div>
+      <div class="cobranca"><b>Como cobrar</b>Plano de mídia até dia 22 de cada mês (envio cliente dia 25). Relatório semanal pronto sexta para envio segunda 10h. Insight de concorrência terça no grupo interno.</div>
+    </div>
+  </div>
+
+  <div class="section-title">Tecnologia<span class="line"></span></div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-head">
+        <div class="avatar">JB</div>
+        <div>
+          <div class="card-name">João Batista <span class="tag global">Global NYO</span></div>
+          <div class="card-role">CTO</div>
+        </div>
+      </div>
+      <div class="card-body">
+        Arquitetura técnica do projeto. Build das 4 Landing Pages. CRM. Dashboard. Co-arquitetura dos Agentes IA com Lucas. Integração com Desbravador (sistema de reservas do Allure).
+      </div>
+      <div class="cobranca"><b>Como cobrar</b>Layout LP1 produzido em paralelo enquanto cliente revisa briefing. LP1 entregue ao cliente em 10 DU após aprovação do briefing. Cliente tem 3 DU para aprovar layout e 5 DU para homologar a entrega final. Status técnico semanal sexta. Avisar blockers de acesso/integração imediatamente.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="avatar">LM</div>
+        <div>
+          <div class="card-name">Lucas Macedo <span class="tag global">Global NYO</span></div>
+          <div class="card-role">Gestor de Automação</div>
+        </div>
+      </div>
+      <div class="card-body">
+        Lead do build do Agente SDR (Triunfo + adaptação Allure) e do Agente Concierge (Allure + adaptação Premium). Setup de prompts, fluxos, testes, integração com CRM.
+      </div>
+      <div class="cobranca"><b>Como cobrar</b>Arquitetura iniciada na semana 1, em paralelo à revisão dos briefings pelo cliente. Testes internos antes da entrega. SDR + Concierge entregues ao cliente em 25 DU após aprovação do briefing. Cliente tem 5 DU para homologar. Status técnico sexta.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="avatar">MF</div>
+        <div>
+          <div class="card-name">Matheus Fonseca <span class="tag global">Global NYO</span></div>
+          <div class="card-role">Gestor de Automação</div>
+        </div>
+      </div>
+      <div class="card-body">
+        Suporte ao Lucas no build dos agentes. Sistema de Precificação Inteligente do Allure (depende de spec da Desbravador). Specialist em call de homologação Tech (entra na call quando necessário, Marina abre e fecha).
+      </div>
+      <div class="cobranca"><b>Como cobrar</b>Levantamento da Desbravador na semana 1. Avisar quando precisar de input do cliente para você convocar via grupo oficial.</div>
+    </div>
+
+  </div>
+
+  <div class="section-title">Performance · Tráfego pago<span class="line"></span></div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-head">
+        <div class="avatar">CA</div>
+        <div>
+          <div class="card-name">Caio <span class="tag global">Global NYO</span></div>
+          <div class="card-role">Responsável pelo pilar Tráfego</div>
+        </div>
+      </div>
+      <div class="card-body">
+        Responsável pelo pilar Tráfego. Gestão e otimização das campanhas Meta + Google dos 3 empreendimentos. Coordena Ricardo e Vitor. Define plano de mídia mensal.
+      </div>
+      <div class="cobranca"><b>Como cobrar</b>Plano de mídia mensal pronto até dia 22 (envio cliente dia 25). Relatório semanal pronto sexta para envio segunda 10h. Avisar imediatamente bloqueios de verba/acessos/criativo.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="avatar">RI</div>
+        <div>
+          <div class="card-name">Ricardo <span class="tag global">Global NYO</span></div>
+          <div class="card-role">Performance · Tráfego pago</div>
+        </div>
+      </div>
+      <div class="card-body">
+        Operação fina das campanhas Meta + Google. Trabalha em conjunto com Vitor sob coordenação do Caio.
+      </div>
+      <div class="cobranca"><b>Como cobrar</b>Reporta para o Caio. Marina cobra o Caio pelo output do trio.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="avatar">VI</div>
+        <div>
+          <div class="card-name">Vitor <span class="tag global">Global NYO</span></div>
+          <div class="card-role">Performance · Tráfego pago</div>
+        </div>
+      </div>
+      <div class="card-body">
+        Operação fina das campanhas Meta + Google. Completa o trio operacional sob coordenação do Caio.
+      </div>
+      <div class="cobranca"><b>Como cobrar</b>Reporta para o Caio. Marina cobra o Caio pelo output do trio.</div>
+    </div>
+
+  </div>
+
+  <div class="section-title">Criação visual<span class="line"></span></div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-head">
+        <div class="avatar">GF</div>
+        <div>
+          <div class="card-name">Guilherme França <span class="tag global">Global NYO</span></div>
+          <div class="card-role">Designer</div>
+        </div>
+      </div>
+      <div class="card-body">
+        Brandbook operacional dos 3 empreendimentos. Edição dos Reels gravados pelo Jhon (3 baterias, ~54 vídeos). Arte de posts estáticos, institucionais e stories. Layout visual das 4 LPs em conjunto com Batista. Identidade visual do Premium em conjunto com Gustavo.
+      </div>
+      <div class="cobranca"><b>Como cobrar</b>Brandbook dos 3 perfis entregue na primeira semana (early-win). Edição dos Reels até 5 DU após cada bateria do Jhon. Coordenar com o Gabriel quando copy chegar.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="avatar">GL</div>
+        <div>
+          <div class="card-name">Gustavo Leonardo <span class="tag cvc">Só Courchevel</span></div>
+          <div class="card-role">Branding</div>
+        </div>
+      </div>
+      <div class="card-body">
+        Conduz a Imersão de Branding na onboarding. Naming do Novo Empreendimento Premium (30+ opções, 3-5 propostas finais). Identidade visual do Premium em conjunto com Guilherme. Manual de marca completo. Direção de tom de voz dos 3 empreendimentos.
+      </div>
+      <div class="cobranca"><b>Como cobrar</b>Naming pronto internamente em 7 DU após aprovação do briefing (folga de 3 DU sobre os 10 DU contratuais). 3 a 5 propostas enviadas ao cliente em até 10 DU após aprovação do briefing. Identidade visual em produção a partir da aprovação do naming pelo cliente.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="avatar">JH</div>
+        <div>
+          <div class="card-name">Jhon <span class="tag cvc">Só Courchevel</span></div>
+          <div class="card-role">Filmmaker</div>
+        </div>
+      </div>
+      <div class="card-body">
+        3 diárias por mês (1 por empreendimento, rotacionando ou conforme prioridade). ~18 Reels por sessão de gravação. Entrega o material em até 5 DU após a gravação para o Guilherme editar.
+      </div>
+      <div class="cobranca"><b>Como cobrar</b>Datas combinadas com você 48h de antecedência. Material entregue em até 5 DU após cada diária. Confirmar acesso ao empreendimento na véspera.</div>
+    </div>
+
+  </div>
+
+  <div class="section-title">Gestão e relação com o cliente<span class="line"></span></div>
+  <div class="grid">
+
+    <div class="card" style="border-color:var(--accent);background:#fdfdff">
+      <div class="card-head">
+        <div class="avatar" style="background:var(--tag-cvc)">MV</div>
+        <div>
+          <div class="card-name">Marina Vilaça (você) <span class="tag cvc">Só Courchevel</span></div>
+          <div class="card-role">PM · Único ponto de contato com cliente</div>
+        </div>
+      </div>
+      <div class="card-body">
+        Centro nervoso da operação. Cria e mantém o ClickUp do projeto. Atualiza o Sheets de Status do Projeto + Registro de Aprovações. EOD para o Gabriel todo dia útil até 19h. Relatório semanal ao cliente toda segunda antes das 10h. Planejamento de mídia + calendário editorial enviado dia 25 ao cliente. Chase de aprovações pendentes (lembrete D-2 sistemático). Atas de toda reunião enviadas em até 1h. Aprovação tácita formal sempre que prazo do cliente vencer sem resposta. Convoca Matheus para calls técnicas quando necessário.
+      </div>
+      <div class="cobranca"><b>Você e eu</b>Reunião hoje para alinhar o ritual operacional, ClickUp, EOD do Gabriel e os primeiros passos da semana 1.</div>
+    </div>
+
+  </div>
+
+  <div class="section-title">Em avaliação<span class="line"></span></div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-head">
+        <div class="avatar" style="background:var(--tag-define)">LO</div>
+        <div>
+          <div class="card-name">Luiz Otávio <span class="tag define">A definir</span></div>
+          <div class="card-role">Corretor de luxo · encaixe a definir</div>
+        </div>
+      </div>
+      <div class="card-body">
+        Corretor de luxo conhecido do Gabriel. Em avaliação para entrar no projeto de alguma forma. Não é tema prioritário no momento. Aguardar Gabriel definir o encaixe.
+      </div>
+      <div class="cobranca"><b>Como cobrar</b>Não cobrar ainda. Quando Gabriel definir, atualizamos este painel.</div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ============================================================
+     TAB 2: ESCOPO
+============================================================ -->
+<div class="panel" id="panel-escopo">
+
+  <div class="section-title">Eventos-âncora do projeto (prazos relativos, não datas)<span class="line"></span></div>
+  <div class="keydates">
+    <div class="kd-card"><div class="kd-date" style="font-size:14px">Onboarding</div><div class="kd-label">Imersão de Branding + entrega dos briefings ao cliente + mapa de stakeholders. D operacional zero.</div></div>
+    <div class="kd-card"><div class="kd-date" style="font-size:14px">Early-win</div><div class="kd-label">Roteiros de criativos + brandbook dos 3 empreendimentos. Sai independente de cliente, ainda na primeira semana.</div></div>
+    <div class="kd-card"><div class="kd-date" style="font-size:14px">Briefings aprovados</div><div class="kd-label">Cliente devolve em escrita. A partir daqui os cronômetros contratuais começam a contar.</div></div>
+    <div class="kd-card"><div class="kd-date" style="font-size:14px">LP 1 Triunfo</div><div class="kd-label">10 DU após briefing aprovado. Primeira LP do contrato.</div></div>
+    <div class="kd-card"><div class="kd-date" style="font-size:14px">Naming Premium</div><div class="kd-label">10 DU após briefing de naming aprovado. 3 a 5 propostas ao cliente.</div></div>
+    <div class="kd-card"><div class="kd-date" style="font-size:14px">LP 2 Allure</div><div class="kd-label">20 DU após briefing aprovado.</div></div>
+    <div class="kd-card"><div class="kd-date" style="font-size:14px">Agentes IA</div><div class="kd-label">SDR e Concierge: 25 DU após briefing aprovado.</div></div>
+    <div class="kd-card"><div class="kd-date" style="font-size:14px">LP 3 + CRM + Dashboard</div><div class="kd-label">30 DU após briefing aprovado.</div></div>
+    <div class="kd-card"><div class="kd-date" style="font-size:14px">Identidade Visual</div><div class="kd-label">15 DU após naming aprovado pelo cliente.</div></div>
+  </div>
+
+  <!-- BRAND -->
+  <div class="pilar">
+    <div class="pilar-head">
+      <h2>Pilar 01 · Brand</h2>
+      <div class="anexo">Anexo 1 do contrato</div>
+    </div>
+    <div class="pilar-body">
+      <div class="pilar-escopo">Identidade completa do <strong>Novo Empreendimento Premium</strong> partindo do zero: naming, identidade visual, manual de marca e assets digitais. 3 rodadas de revisão inclusas (4ª em diante cobrada à parte). Cliente tem 5 DU para feedback consolidado por rodada.</div>
+      <table>
+        <thead>
+          <tr><th style="width:32%">Entrega</th><th style="width:18%">Prazo contratual</th><th style="width:24%">Dono NYO</th><th style="width:14%">Status</th><th>Observação</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="datakey">Briefing de naming</span> aprovado em imersão escrita</td><td>Pré (na onboarding)</td><td>Gustavo + Gabriel</td><td><span class="pill warn">Aguarda onboarding</span></td><td>Imersão de Branding na própria reunião de onboarding</td></tr>
+          <tr><td><span class="datakey">Naming</span> 30+ opções, 3-5 propostas finais</td><td>10 DU pós aprovação do briefing</td><td>Gustavo + Guilherme</td><td><span class="pill future">A iniciar</span></td><td>Cliente tem 5 DU para escolher após receber as propostas</td></tr>
+          <tr><td><span class="datakey">Identidade visual + Manual de marca</span></td><td>15 DU pós aprovação naming</td><td>Gustavo + Guilherme</td><td><span class="pill future">Mês 2</span></td><td>Logo + paleta + tipografia + aplicações conceituais (placa, uniforme, elevadores)</td></tr>
+          <tr><td><span class="datakey">Assets digitais</span> feed quadrado, retrato, stories, banners</td><td>5 DU pós ID visual aprovada</td><td>Guilherme</td><td><span class="pill future">Mês 2</span></td><td>Depende da entrega anterior</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRÁFEGO -->
+  <div class="pilar">
+    <div class="pilar-head">
+      <h2>Pilar 02 · Tráfego</h2>
+      <div class="anexo">Anexo 2 do contrato</div>
+    </div>
+    <div class="pilar-body">
+      <div class="pilar-escopo">Criação, gestão e otimização de campanhas pagas (Meta Ads + Google Ads) para <strong>Triunfo, Allure</strong> e futuramente Allure Brooklyn. Verba de mídia é responsabilidade exclusiva do cliente. Cliente tem 3 DU para aprovar plano de mídia (tácito após).</div>
+      <table>
+        <thead>
+          <tr><th style="width:32%">Entrega</th><th style="width:18%">Prazo</th><th style="width:24%">Dono NYO</th><th style="width:14%">Status</th><th>Observação</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="datakey">Setup técnico</span> pixel + GA4 + Conversions API + UTMs</td><td>Inicia ao receber os acessos</td><td>Caio + Ricardo + Vitor (apoio Pedro)</td><td><span class="pill future">A iniciar</span></td><td>Depende dos acessos do cliente</td></tr>
+          <tr><td><span class="datakey">Plano de Mídia mês 1</span></td><td>Pré-onboarding</td><td>Caio</td><td><span class="pill warn">Em produção</span></td><td>Levar pronto na call de onboarding</td></tr>
+          <tr><td><span class="datakey">Campanhas no ar</span> Triunfo + Allure</td><td>Após acessos + verba na plataforma</td><td>Caio + trio performance</td><td><span class="pill future">A iniciar</span></td><td>Sem verba disponível = campanhas suspensas, conforme contrato</td></tr>
+          <tr><td><span class="datakey">Plano de Mídia mês seguinte</span></td><td>Envio dia 25, retorno dia 28</td><td>Caio + Marina</td><td><span class="pill ok">Recorrente</span></td><td>Pronto internamente dia 22</td></tr>
+          <tr><td><span class="datakey">Relatório semanal</span> de performance</td><td>Toda segunda antes das 10h</td><td>Caio + Marina</td><td><span class="pill ok">Recorrente</span></td><td>Pronto sexta para envio segunda</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TECH -->
+  <div class="pilar">
+    <div class="pilar-head">
+      <h2>Pilar 03 · Tech</h2>
+      <div class="anexo">Anexo 3 do contrato</div>
+    </div>
+    <div class="pilar-body">
+      <div class="pilar-escopo">Agentes de IA via WhatsApp, CRM, Dashboard, Sistema de Precificação Inteligente e <strong>4 Landing Pages</strong>. Cliente tem 3 DU para aprovar layout de cada LP e 5 DU para homologar cada entrega (tácito após).</div>
+      <table>
+        <thead>
+          <tr><th style="width:32%">Entrega</th><th style="width:18%">Prazo contratual</th><th style="width:24%">Dono NYO</th><th style="width:14%">Status</th><th>Observação</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="datakey">LP 1 Triunfo Campo Belo</span></td><td>10 DU após briefing aprovado</td><td>João Batista + Guilherme</td><td><span class="pill warn">Layout em produção</span></td><td>Primeira LP do contrato, prioridade alta. Cliente tem 3 DU para aprovar o layout antes do desenvolvimento, e 5 DU para homologar após entrega.</td></tr>
+          <tr><td><span class="datakey">LP 2 Allure Moema</span></td><td>20 DU após briefing aprovado</td><td>João Batista + Guilherme</td><td><span class="pill future">A iniciar</span></td><td>Decidir se substitui motor Desbravador ou convive. Layout 3 DU + homologação 5 DU.</td></tr>
+          <tr><td><span class="datakey">LP 3 Institucional Courchevel</span></td><td>30 DU após briefing aprovado</td><td>João Batista + Guilherme</td><td><span class="pill future">A iniciar</span></td><td>Substitui o Linktree atual. Layout 3 DU + homologação 5 DU.</td></tr>
+          <tr><td><span class="datakey">LP 4 Novo Premium</span></td><td>40 DU após briefing aprovado, depende de naming + ID visual aprovados antes</td><td>João Batista + Guilherme</td><td><span class="pill future">Posterior aos demais</span></td><td>Bloqueada por Brand</td></tr>
+          <tr><td><span class="datakey">Agente IA SDR</span> Triunfo + adaptação Allure</td><td>25 DU após briefing aprovado</td><td>Lucas + Matheus</td><td><span class="pill future">A iniciar</span></td><td>Resposta em &lt; 2 min em 95% dos testes; encaminhamento corretor &lt; 5 min. Cliente tem 5 DU para homologar.</td></tr>
+          <tr><td><span class="datakey">Agente IA Concierge</span> Allure + adaptação Premium</td><td>25 DU após briefing aprovado</td><td>Lucas + Matheus</td><td><span class="pill future">A iniciar</span></td><td>4 fluxos: reserva, pré check-in, durante estadia, pós saída. Cliente tem 5 DU para homologar.</td></tr>
+          <tr><td><span class="datakey">CRM</span> pipeline + histórico + integração agentes</td><td>30 DU após briefing aprovado</td><td>João Batista + Lucas</td><td><span class="pill future">A iniciar</span></td><td>Pergunta na onboarding: cliente já tem CRM?</td></tr>
+          <tr><td><span class="datakey">Dashboard de acompanhamento</span></td><td>30 DU após briefing aprovado</td><td>João Batista</td><td><span class="pill future">A iniciar</span></td><td>Tempo real, filtros por empreendimento e período</td></tr>
+          <tr><td><span class="datakey">Sistema de Precificação Inteligente</span> Allure</td><td>A definir após onboarding</td><td>Matheus + João Batista</td><td><span class="pill warn">Aguarda spec Desbravador</span></td><td>Integração via Desbravador (PMS atual). Atualização precisa subir via Channel Manager nas OTAs</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SOCIAL MEDIA -->
+  <div class="pilar">
+    <div class="pilar-head">
+      <h2>Pilar 04 · Social Media</h2>
+      <div class="anexo">Anexo 4 do contrato</div>
+    </div>
+    <div class="pilar-body">
+      <div class="pilar-escopo">Criação e gestão de conteúdo para <strong>2 perfis de Instagram</strong> à escolha do cliente. Volumes <strong>não acumulam</strong> entre meses, posts não publicados são cancelados sem reposição. Cliente tem até dia 28 para feedback consolidado do calendário e 2 DU para aprovar cada conteúdo finalizado (tácito após).</div>
+      <table>
+        <thead>
+          <tr><th style="width:30%">Entrega mensal por perfil</th><th style="width:14%">Volume / perfil</th><th style="width:14%">Total (2 perfis)</th><th style="width:24%">Dono NYO</th><th>Observação</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="datakey">Reels</span></td><td>6</td><td>12</td><td>Gabriel (copy) + Jhon (gravação) + Guilherme (edição)</td><td>Bateria de 3 meses gravada de uma vez nas primeiras diárias</td></tr>
+          <tr><td><span class="datakey">Posts estáticos</span></td><td>4</td><td>8</td><td>Gabriel (copy) + Guilherme (arte)</td><td></td></tr>
+          <tr><td><span class="datakey">Posts institucionais</span></td><td>2</td><td>4</td><td>Gabriel (copy) + Guilherme (arte)</td><td></td></tr>
+          <tr><td><span class="datakey">Stories</span></td><td>12 a 20</td><td>24 a 40</td><td>Gabriel (copy) + Guilherme (arte)</td><td>Distribuídos ao longo do mês</td></tr>
+          <tr><td><span class="datakey">Calendário Editorial mês seguinte</span></td><td colspan="2">Enviado dia 25</td><td>Gabriel + Marina</td><td>Pronto internamente dia 22. Cliente devolve até 28. Aprovado tácito dia 30.</td></tr>
+        </tbody>
+      </table>
+      <div class="cobranca" style="margin-top:18px"><b>Atenção</b>Contrato cobre 2 perfis. A operação real cuida de 3 (Allure + Courchevelinc + Triunfo a criar). Decisão NYO de fazer mais que o contratado. <strong>Você tem que registrar isso em ata</strong> na onboarding pra não virar parâmetro depois. Pendência: confirmar com cliente quais 2 perfis são os contratuais.</div>
+    </div>
+  </div>
+
+  <!-- RECORRÊNCIAS -->
+  <div class="recurr">
+    <h3>Cadência recorrente que você dispara</h3>
+    <ul>
+      <li><span class="when">Toda segunda antes das 10h</span><span class="what"><b>Relatório semanal</b> ao cliente no grupo oficial. Pronto desde sexta com o Pedro.</span></li>
+      <li><span class="when">Toda sexta-feira</span><span class="what"><b>Atualizar o Sheets de Status</b> + checar prazos da próxima semana. Call com Gabriel às 17h, 30 min.</span></li>
+      <li><span class="when">Todo dia útil até 19h</span><span class="what"><b>EOD para o Gabriel</b> em grupo privado entre vocês 2: ✅ entregues hoje · ⏳ amanhã · ⚠️ blockers · 🔴 cliente atrasado · 💸 mídia.</span></li>
+      <li><span class="when">Dia 22 de cada mês</span><span class="what">Finalizar internamente: <b>plano de mídia + calendário editorial</b> do mês seguinte.</span></li>
+      <li><span class="when">Dia 25 de cada mês</span><span class="what">Enviar ao cliente: <b>plano de mídia + calendário editorial</b> mês seguinte.</span></li>
+      <li><span class="when">Dia 27 de cada mês</span><span class="what">Enviar <b>lembrete D-2</b> se cliente ainda não respondeu ao planejamento ou calendário.</span></li>
+      <li><span class="when">Dia 28 de cada mês</span><span class="what">Verificar resposta do cliente. Sem manifestação = aprovação tácita formal a registrar.</span></li>
+      <li><span class="when">Após toda call</span><span class="what">Em até 1h: <b>mensagem de confirmação pós-reunião</b> no grupo + ata no Drive + pedido de "Confirmado" escrito do cliente.</span></li>
+      <li><span class="when">Após toda entrega</span><span class="what">Mensagem padrão com link Drive + descrição + checklist + prazo + aviso de aprovação tácita conforme contrato.</span></li>
+      <li><span class="when">2 DU antes de qualquer prazo do cliente</span><span class="what"><b>Lembrete D-2</b> automático ao cliente.</span></li>
+      <li><span class="when">No dia do prazo sem resposta</span><span class="what"><b>Aprovação tácita</b> formal por escrito no grupo + registro no Sheets.</span></li>
+    </ul>
+  </div>
+
+  <div class="recurr">
+    <h3>Pendências críticas que você cobra do cliente na semana 1</h3>
+    <ul>
+      <li><span class="when">Na onboarding</span><span class="what">Mapa de stakeholders preenchido (quem aprova o quê em cada pilar) + critérios de sucesso do mês 1.</span></li>
+      <li><span class="when">Pós onboarding</span><span class="what">Briefings devolvidos preenchidos: Naming Premium, ID Visual Premium, Agentes IA.</span></li>
+      <li><span class="when">Pós onboarding</span><span class="what">Acessos: Meta Business, Google Ads, GA4, Instagram dos perfis, Desbravador, sistema de reservas Allure, hospedagem de cada empreendimento, WhatsApp dedicado para Agentes.</span></li>
+      <li><span class="when">Pós onboarding</span><span class="what">Confirmação dos 2 perfis Instagram contratuais.</span></li>
+      <li><span class="when">Pós onboarding</span><span class="what">Decisão: LinkedIn entra como cortesia ou cobrança à parte.</span></li>
+      <li><span class="when">Rolling</span><span class="what">Materiais por empreendimento: fotos profissionais, vídeos brutos, logos vetorizados, plantas (Triunfo), avaliações de hóspedes (Allure), histórico de portfólio.</span></li>
+      <li><span class="when">Rolling</span><span class="what">Histórico de campanhas pagas anteriores (gasto, leads, conversão, criativos vencedores).</span></li>
+    </ul>
+  </div>
+
+</div>
+
+<footer>
+  Painel da Marina · NYO × Courchevel · Confidencial · Atualizado em 11/05/2026<br>
+  Documento vivo. Atualizar conforme briefings devolvem, escopos confirmam e time evolui.
+</footer>
+
+<script>
+  document.querySelectorAll('.tab').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const tab = btn.dataset.tab;
+      document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-'+tab).classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+</script>
+
+</body>
+</html>
