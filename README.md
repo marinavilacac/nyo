@@ -1,80 +1,116 @@
-# Pacote Marina · Projeto Courchevel
+# Claude Marina 2.0, NYO × Courchevel
 
-> Tudo que você precisa pra cuidar da gestão de projetos do Courchevel na NYO.
->
-> Recebido em 11/05/2026 · Material vivo, vai evoluir conforme o projeto anda.
+Pacote de Claude Code da Marina pra gerar atas de reunião do projeto Courchevel no padrão visual oficial NYO.
 
----
+## Setup, primeira vez (5 minutos)
 
-## Como instalar na sua máquina
+### 1. Pré-requisitos no Mac/PC
 
-1. **Salve esta pasta** em qualquer lugar do seu Mac (ex: `~/Documents/NYO-Courchevel/` ou seu Drive).
-2. **Abra a pasta no Finder** para ver o conteúdo organizado.
-3. **Se você usa o Claude Code (CLI)**: abra o Terminal dentro desta pasta e rode `claude`. O Claude vai carregar automaticamente o arquivo `CLAUDE.md` que explica o projeto inteiro. A partir daí você pode fazer perguntas, gerar atas, escrever mensagens pro cliente, atualizar status do projeto.
-4. **Se você ainda não usa o Claude Code**: tudo aqui é legível direto. Abra o `Painel-Marina.html` no navegador e os `.md` no Notion, Obsidian, Typora ou qualquer editor.
+- **Node.js 18+** instalado. Testar com: `node -v`
+- **Claude Code CLI** instalado e logado. Testar com: `claude --version`
 
----
+Se faltar algum, ver:
+- Node: https://nodejs.org/
+- Claude Code: https://docs.anthropic.com/en/docs/claude-code
 
-## Por onde começar
+### 2. Descompactar e instalar deps
 
-Leia nesta ordem (15-20 minutos no total):
+```bash
+# Entrar na pasta (ajustar o caminho pro lugar onde você descompactou)
+cd ~/Documents/Claude-Marina-2.0
 
-1. **[00-comece-aqui/walkthrough.md](00-comece-aqui/walkthrough.md)** : tour de 5 minutos.
-2. **[00-comece-aqui/Painel-Marina.html](00-comece-aqui/Painel-Marina.html)** : abra no navegador, visão geral do time e do escopo em 2 abas.
-3. **[02-empreendimentos/](02-empreendimentos/)** : 3 documentos curtos, um por empreendimento (Allure, Triunfo, Courchevel).
-4. **[03-entregas-prazos/](03-entregas-prazos/)** : o que tem que ser entregue, quando e por quem.
-5. **[04-comunicacao-cliente/](04-comunicacao-cliente/)** : templates de mensagens prontas e regras de aprovação.
-6. **[00-comece-aqui/prompts-prontos.md](00-comece-aqui/prompts-prontos.md)** : prompts pra colar no Claude e resolver tarefas rapidamente.
-
----
-
-## Estrutura desta pasta
-
-```
-.
-├── README.md                            (este arquivo)
-├── CLAUDE.md                            (lido automaticamente pelo Claude Code)
-├── 00-comece-aqui/
-│   ├── Painel-Marina.html               (visão geral em 2 abas)
-│   ├── walkthrough.md                   (tour de 5 minutos)
-│   └── prompts-prontos.md               (atalhos pro Claude)
-├── 01-time/
-│   └── quem-faz-o-que.md                (organograma + como cobrar cada um)
-├── 02-empreendimentos/
-│   ├── allure.md                        (Allure Moema, short + long stay)
-│   ├── triunfo.md                       (Triunfo Campo Belo, venda + long stay)
-│   └── courchevel.md                    (Courchevel Inc, institucional)
-├── 03-entregas-prazos/
-│   ├── pilares-e-entregas.md            (Brand, Tráfego, Tech, Social Media)
-│   └── linha-do-tempo.md                (datas-âncora dos 30 dias)
-├── 04-comunicacao-cliente/
-│   ├── templates-whatsapp.md            (BOAS-VINDAS, LEMBRETE D-2, etc.)
-│   └── regras-de-aprovacao.md           (escrito sempre, tácito após prazo)
-└── 05-clickup-starter/
-    ├── estrutura-sugerida.md            (boards, listas e status pro ClickUp)
-    └── tarefas-30-dias.csv              (importável direto no ClickUp)
+# Instalar a lib docx (única dependência, ~5 MB)
+npm install
 ```
 
+Isso cria a pasta `node_modules/` e baixa a lib `docx`. Roda uma vez só.
+
+### 3. Abrir o Claude Code dentro da pasta
+
+```bash
+claude
+```
+
+O Claude Code carrega o `CLAUDE.md` automaticamente e você já tem contexto do projeto.
+
+### 4. Primeira mensagem
+
+Abrir [prompt-inicial.md](prompt-inicial.md), copiar o bloco de código e colar como primeira mensagem no Claude. Isso garante que ele leu o contexto e está pronto.
+
 ---
 
-## Princípios que valem pra tudo
+## Uso recorrente
 
-1. **Você é o único ponto de contato com o cliente.** Toda comunicação externa passa por você.
-2. **Aprovação verbal não vale.** Toda call termina com mensagem de confirmação pedindo "Confirmado" escrito do cliente.
-3. **Lembrete D-2 sistemático.** 2 dias antes de qualquer prazo do cliente, você dispara o lembrete.
-4. **Aprovação tácita é formal.** Se prazo do cliente vence sem resposta, você manda mensagem formal registrando a aprovação automática e segue.
-5. **EOD para o Gabriel todo dia útil até 19h** em grupo privado dos 2.
-6. **Sheets de Status sempre atualizado** (a sua planilha de controle).
+Toda vez que sair de uma reunião:
+
+1. `cd ~/Documents/Claude-Marina-2.0 && claude`
+2. Cola a transcrição (ou notas, ou bullets soltos) e diz **"Gera a ata dessa reunião."**
+3. Claude estrutura em JSON, te mostra um resumo, você aprova
+4. Claude roda o script e gera o `.docx`
+5. Você abre no Word/Pages, revisa, ajusta se precisar
+6. Envia pro Enzo no grupo WhatsApp por escrito
 
 ---
 
-## Em caso de dúvida
+## Estrutura de pastas
 
-- Sobre o cliente, o produto, o time: tudo está nesta pasta.
-- Sobre uma decisão estratégica: pergunta ao Gabriel no grupo dos 2.
-- Sobre uma decisão técnica: pergunta ao Lucas (agentes), João Batista (LPs/CRM/Dashboard) ou Matheus (precificação).
-- Sobre tráfego: Pedro.
-- Sobre design e visual: Guilherme.
-- Sobre branding: Gustavo.
+```
+Claude-Marina-2.0/
+├── CLAUDE.md                    ← contexto Courchevel (carregado auto)
+├── prompt-inicial.md            ← primeira mensagem
+├── README.md                    ← este arquivo
+├── package.json                 ← deps
+├── .claude/
+│   └── skills/
+│       └── criar-ata-reuniao/
+│           ├── SKILL.md
+│           ├── scripts/
+│           │   ├── build_ata.js     ← gerador .docx
+│           │   └── docx_to_pdf.js   ← opcional, converte pra PDF
+│           └── exemplos/
+│               ├── ata-kickoff.md
+│               └── ata-kickoff-content.json
+└── 06-reunioes/                 ← suas atas (criada conforme uso)
+    └── <slug>/
+        ├── ata-content.json
+        └── ata-<slug>.docx
+```
 
-Detalhes em [01-time/quem-faz-o-que.md](01-time/quem-faz-o-que.md).
+---
+
+## Comandos manuais (caso queira rodar sem o Claude)
+
+Gerar `.docx` direto a partir de um JSON pronto:
+
+```bash
+node .claude/skills/criar-ata-reuniao/scripts/build_ata.js \
+  06-reunioes/2026-05-22-aprovacao-naming/ata-content.json \
+  06-reunioes/2026-05-22-aprovacao-naming/ata-aprovacao-naming.docx
+```
+
+Converter `.docx` para `.pdf` (opcional, requer LibreOffice ou Pandoc instalado):
+
+```bash
+node .claude/skills/criar-ata-reuniao/scripts/docx_to_pdf.js \
+  06-reunioes/2026-05-22-aprovacao-naming/ata-aprovacao-naming.docx \
+  06-reunioes/2026-05-22-aprovacao-naming/ata-aprovacao-naming.pdf
+```
+
+---
+
+## Troubleshooting
+
+| Erro | Causa | Fix |
+|---|---|---|
+| `Cannot find module 'docx'` | Não rodou `npm install` | Rodar `npm install` na raiz do pacote |
+| `command not found: claude` | Claude Code não instalado | Instalar via https://docs.anthropic.com/en/docs/claude-code |
+| `.docx` não abre / tá quebrado | JSON com sintaxe inválida | `cat ata-content.json \| python3 -m json.tool` pra validar |
+| Cores estranhas no `.docx` | Alguém editou o `build_ata.js` | Pedir o pacote novo pro Gabriel |
+
+---
+
+## Versão
+
+**2.0**, 14/05/2026. Cobre apenas ata de reunião. Próximos pacotes (3.0+) vão incluir resumo semanal, briefings e calendário editorial.
+
+Em caso de dúvida fora do escopo da ata: falar com Gabriel.

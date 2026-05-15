@@ -1,99 +1,253 @@
-# Marina · Projeto Courchevel (NYO)
+# Pacote Claude Marina 2.0, Projeto NYO × Courchevel
 
-> Este arquivo é lido automaticamente pelo Claude Code quando você abre esta pasta.
-> Ele dá ao Claude o contexto do projeto e o tom esperado nas respostas.
+> Pacote operacional para a Marina Vilaça (PM NYO, ponto focal do projeto Courchevel) usar no Claude Code dela e gerar documentos do projeto no mesmo padrão visual que o Gabriel usa.
+>
+> **Versão 2.0**, atualizada em 14/05/2026 com tudo que foi consolidado no onboarding oficial (14/05) e nas decisões pós-call.
 
 ---
 
-## Quem eu sou
+## O que este pacote te dá
 
-Sou Marina Vilaça, gestora de projetos da agência NYO, dedicada ao cliente Courchevel. Sou o **único ponto de contato com o cliente** e a responsável por garantir que todas as entregas saiam no prazo, que toda aprovação seja escrita, e que o Gabriel tenha visibilidade diária do andamento.
+1. **Contexto completo do projeto Courchevel** (este arquivo) carregado automaticamente pelo Claude Code toda vez que você abrir esta pasta. Não precisa explicar o projeto pro Claude, ele já sabe.
+2. **Skill `criar-ata-reuniao`** em [.claude/skills/criar-ata-reuniao/](.claude/skills/criar-ata-reuniao/), que gera ata em `.docx` no padrão visual oficial NYO a partir de uma transcrição ou notas de reunião.
+3. **Exemplo canônico** da ata de onboarding (14/05/2026) em markdown e JSON, para referência de schema e estilo.
+4. **Scripts prontos** (`build_ata.js`, `docx_to_pdf.js`) com a identidade visual NYO hardcoded.
 
-## Sobre o cliente
+Como usar no dia a dia: ver [prompt-inicial.md](prompt-inicial.md) e [README.md](README.md).
 
-A Courchevel é uma incorporadora imobiliária. O contrato com a NYO cobre 4 pilares: Brand, Tráfego, Tech e Social Media. A operação NYO atende 3 empreendimentos da Courchevel hoje:
+---
 
-- **Allure Moema** - prédio de studios em modelo short stay (estilo Airbnb) + long stay, mix 50/50.
-- **Triunfo Campo Belo** - empreendimento de alto padrão para venda (ticket médio R$ 2 milhões) + long stay (R$ 14 mil/mês). Ainda não tem Instagram, vamos lançar do zero.
-- **Courchevelinc (institucional)** - conta institucional da incorporadora, com perfil em hibernação que vamos reativar.
+## O projeto, em uma frase
 
-Detalhes em `02-empreendimentos/`.
+NYO (GM SOLUCOES LTDA) é a agência contratada da Courchevel Inc para operar 4 pilares (Brand, Tráfego, Tech, Social Media) num contrato de R$ 30.000/mês, vigência mínima 3 meses. Marina é o ponto focal único de comunicação NYO ↔ Courchevel.
 
-## Sobre o time NYO neste projeto
+## Stakeholders Courchevel
 
-13 pessoas com papéis claros. Detalhes em `01-time/quem-faz-o-que.md`. Para reforçar:
+| Nome | Papel | Como tratar |
+|---|---|---|
+| **Enzo Delmondes** | Gestor Comercial | Decisor único do dia a dia. Toda aprovação operacional passa por ele. Marina conversa com Enzo, não com Joelson. |
+| **Joelson Dos Santos Teixeira Delmondes** | Founder | Aprovador estratégico de marca e direção de produto. Participa só de momentos críticos. |
+| Rodrigo | Head de vendas Triunfo | Não esteve no onboarding. Candidato a aparecer em vídeos do empreendimento. |
+| Priscila | Gerente do Allure | Ponto de relacionamento histórico com influenciadores (modelo de permuta). |
 
-- **Gabriel Soier** - CEO, estrategista, produz todas as copies de social e ads.
-- **Pedro Lucena** - estrategista. Apoia o Caio na dupla verificação técnica do tráfego e conduz busca de influencers para parcerias.
-- **João Batista** - CTO, dono das LPs, CRM, Dashboard.
-- **Lucas Macedo** e **Matheus Fonseca** - automação, agentes IA.
-- **Caio** - responsável pelo pilar Tráfego.
-- **Ricardo, Vitor** - operação fina das campanhas, reportam ao Caio.
-- **Guilherme França** - designer.
-- **Gustavo Leonardo** - branding (só Courchevel).
-- **Jhon** - filmmaker (só Courchevel, 3 diárias/mês).
-- **Eu, Marina** - PM, único ponto de contato externo.
+## Time NYO no projeto
 
-## Como os prazos do projeto funcionam
+| Nome | Função | Quando entra |
+|---|---|---|
+| Gabriel Soier | Sócio / Estratégia | Decisões estratégicas, visitas presenciais, calls críticas |
+| Pedro Lucena | Sócio / Estratégia | Mais presente que o padrão NYO neste projeto |
+| **Marina Vilaça** | **PM, ponto focal** | **Você.** Centraliza toda comunicação com Enzo. |
+| Caio Souza | Gestor de Tráfego | Pilar 2 (Tráfego) |
+| João | Tech | Pilar 3 (Tech, agentes IA, CRM, LPs) |
+| Gustavo Araújo + França | Brand & Design | Pilar 1 (Brand) |
+| Leonardo Sérgio | Social Media | Pilar 4 (Social Media) |
+| John | Filmmaker | Gravações nos empreendimentos |
+| Lucas e Mateus | Agentes de IA | Implementação de SDR e Concierge |
 
-Os prazos contratuais são **relativos a eventos**, não datas fixas no calendário. A maioria das entregas começa a contar **a partir da aprovação do briefing pelo cliente**. Sem briefing aprovado em escrita, o cronômetro contratual não roda.
+---
 
-Resumo dos prazos do contrato (em dias úteis após aprovação do briefing relevante):
+## Os 5 empreendimentos sob escopo
 
-| Entrega | Prazo |
+> Regra crítica: toda entrega é amarrada a **1 desses 5** (ou marcada como `Cross` se for transversal). Nunca esquecer da **Chevalier**, é o esquecimento recorrente do projeto.
+
+| # | Nome | Código | Status | Pilares NYO |
+|---|---|---|---|---|
+| 1 | Courchevel Institucional | CVC | Reativação imediata | Brand + Social (@courchevelinc) + Tech (LP institucional) |
+| 2 | Triunfo Campo Belo | TRF | Em pré-lançamento | Tráfego + Tech (LP + SDR) + Social |
+| 3 | Allure Moema | ALR | Operação hoteleira ativa | Tráfego + Tech (LP + SDR + Concierge) + Social |
+| 4 | Novo Empreendimento Premium ("Brooklyn", interno) | a definir | **Naming em curso** | Brand (naming + identidade) + Tech (LP + SDR + Concierge) |
+| 5 | Chevalier | CHV | Standby operacional, segue no radar | Brand (brandbook) + Tech (LP) + Social (standby) |
+
+### Detalhes operacionais por empreendimento
+
+**Allure (Moema):**
+- 128 unidades totais, 84 são da Courchevel, 44 de terceiros
+- Ocupação média 60 a 65%, fundo em dezembro e janeiro (manutenção)
+- Público principal: feiras e eventos da Expo Imigrantes, chega via Congonhas
+- Problema crítico: identidade fragmentada entre Booking ("Maia Luri"), Google e Instagram ("Luri", "Allure"). NYO consolida nos primeiros 30 dias.
+- Fórmula 1 2026 vendida abaixo da margem, campanha 2027 antecipada
+- Instagram: @allure.moema, 10.111 followers
+
+**Triunfo Campo Belo:**
+- 52 unidades de 80m², sem estúdios, sem NR, 2 lojas sem restaurante
+- Diferenciais técnicos: floreiras na varanda e suíte, terraço técnico externo, persianas elétricas com blackout, guarda-corpo em vidro, ponto para churrasqueira a carvão, pé direito 2,88m, portas de madeira maciça, tratamento acústico em paredes externas, andar técnico com piscina
+- Diferencial comercial: opção de entrega 100% decorada (raro em SP pós-entrega)
+- Público-alvo: jovem bem-sucedido, divorciados querendo permanecer na região, casais em ninho vazio
+- Posicionamento: "valor antes do preço"
+- Instagram: a criar pela NYO
+
+**Novo Empreendimento Premium:**
+- Localização provisória: "Brooklyn"
+- Prazo crítico: logo, marca e cores antes da entrega física (placas de elevador, hall)
+- Reunião dedicada de Brand: 15/05/2026 manhã (Gustavo + Marina + Enzo + Joelson)
+
+**Courchevel Institucional:**
+- Posicionamento: incorporadora e construtora ao mesmo tempo (constrói o que vende)
+- Instagram @courchevelinc: 2.609 followers, em hibernação há 103 dias
+- Bio será reescrita pra viabilizar pedido de selo verificado
+
+**Chevalier:**
+- Em standby operacional, mas permanece no radar
+- NYO solicitou formalmente ao cliente detalhamento por escrito (escopo, expectativas, materiais)
+- **Não esquecer.** Em toda planilha, dashboard ou planejamento, Chevalier aparece.
+
+---
+
+## Os 4 pilares NYO no contrato
+
+### Pilar 1, Brand
+Identidade completa do Novo Empreendimento Premium (naming, identidade visual, manual, assets digitais).
+
+Fluxo: imersão → briefing aprovado por escrito → naming (10 d.u. após briefing) → identidade visual (15 d.u. após naming aprovado) → manual + assets (5 d.u. após identidade aprovada). 3 rodadas de revisão inclusas.
+
+### Pilar 2, Tráfego
+Meta Ads + Google Ads para Triunfo, Allure e (futuro) Premium.
+
+Entregas mensais: gestão, otimização semanal, segmentação por temperatura, **relatório semanal toda segunda-feira**. Planejamento de mídia enviado dia 25 do mês anterior, cliente tem 3 d.u. pra aprovar. Verba de mídia é do cliente.
+
+### Pilar 3, Tech
+Agentes IA WhatsApp (SDR + Concierge), CRM, Dashboard, LPs, Sistema de Precificação.
+
+Prazos a partir da assinatura:
+- LP Triunfo: 10 d.u.
+- LP Allure: 20 d.u.
+- LP Institucional Courchevel: 30 d.u.
+- LP Premium: 40 d.u. (condicionada a naming)
+- SDR Triunfo + Allure: 25 d.u.
+- Concierge Allure + Premium: 25 d.u.
+- CRM: 30 d.u.
+- Dashboard: 30 d.u.
+
+Homologação cliente: 5 d.u. após recebimento. Silêncio = aceito.
+
+### Pilar 4, Social Media
+2 perfis de Instagram (cliente escolhe). Volume mensal por perfil:
+- 6 Reels
+- 4 posts estáticos
+- 2 posts institucionais
+- 12 a 20 stories
+
+Calendário enviado dia 25 do mês anterior, aprovado dia 30. Cliente tem 2 d.u. pra aprovar cada conteúdo finalizado. Material do cliente: 72h de antecedência mínima.
+
+---
+
+## Prazos críticos de resposta do cliente
+
+> Tudo abaixo: silêncio = aprovação tácita. Marina precisa fiscalizar e cobrar por escrito.
+
+| Contexto | Prazo | Consequência do silêncio |
+|---|---|---|
+| Feedback de branding (por rodada) | 5 d.u. | Aprovação tácita |
+| Homologação Tech | 5 d.u. | Entrega aceita |
+| Aprovação de layout de LP | 3 d.u. | Layout aprovado, desenvolvimento inicia |
+| Planejamento de Mídia | 3 d.u. | Plano aprovado, NYO executa |
+| Calendário editorial Social | Dia 28 do mês anterior | Aprovado dia 30 |
+| Aprovação de conteúdo finalizado | 2 d.u. | NYO autorizada a publicar |
+
+---
+
+## Datas-âncora pós-onboarding (14/05/2026)
+
+| Data | Evento |
 |---|---|
-| Naming Premium (3 a 5 propostas ao cliente) | 10 DU |
-| Identidade visual Premium (após naming aprovado) | 15 DU |
-| Assets digitais Premium (após ID visual aprovada) | 5 DU |
-| LP 1 Triunfo | 10 DU |
-| LP 2 Allure | 20 DU |
-| LP 3 Institucional | 30 DU |
-| LP 4 Premium (depende naming + ID visual) | 40 DU |
-| Agente IA SDR | 25 DU |
-| Agente IA Concierge | 25 DU |
-| CRM | 30 DU |
-| Dashboard | 30 DU |
-| Sistema de Precificação | a definir após onboarding |
+| **15/05** | Reunião de Brand do Novo Premium (Gustavo + Marina + Enzo + Joelson), prioridade alta |
+| 15/05 | Briefings de Brand, Tráfego, Tech e Social entregues à Courchevel |
+| 15/05 | Moodboards dos 3 empreendimentos apresentados (Premium ainda sem moodboard, sem nome) |
+| **16/05** | Primeiro resumo semanal enviado pela Marina |
+| 19 a 24/05 | Janela de gravação Allure (manhã) + Triunfo (qualquer horário) com John |
+| **25/05** | Primeiro sprint do contrato fechado, LIVE dos ads |
 
-Sequência de eventos completa em `03-entregas-prazos/linha-do-tempo.md`.
-Detalhamento das entregas por pilar em `03-entregas-prazos/pilares-e-entregas.md`.
+---
 
-## Minha cadência operacional
+## Como o Gabriel quer os documentos
 
-- **Toda segunda antes das 10h** - envio relatório semanal ao cliente.
-- **Toda sexta** - atualizo o Sheets de Status + call com Gabriel às 17h (30 min).
-- **Todo dia útil até 19h** - mando EOD ao Gabriel em grupo privado dos 2.
-- **Dia 22 de cada mês** - finalizo internamente plano de mídia + calendário editorial do mês seguinte.
-- **Dia 25** - envio ao cliente.
-- **2 dias antes de qualquer prazo do cliente** - lembrete D-2.
-- **Após toda call** - confirmação pós-reunião em até 1h + ata + pedido de "Confirmado" escrito.
+### Regras absolutas de estilo (todo entregável)
 
-## Regras inegociáveis
+1. **Travessão longo é proibido.** É marca registrada de LLM e contamina a voz. Substituir por vírgula, ponto ou dois pontos. Hífen comum (palavra-composta) e en-dash de range (10 a 20) podem.
+2. **Frases curtas. Direto ao ponto.** Sem rodeios, sem "vamos pensar juntos", sem "espero que isso ajude".
+3. **Português correto e formal.** Cliente é incorporadora premium, o tom acompanha.
+4. **Dados em evidência.** ROAS, CPL, VGV, taxa de conversão são a linguagem da NYO. Quando houver número, ele tem que estar visível.
+5. **Aprovação escrita sempre.** Nada de "ok verbal na call", sempre solicitar confirmação por escrito.
+6. **Não inventar.** Se a informação não tá nas notas ou na transcrição, perguntar. Documento oficial não comporta hipótese.
 
-1. **Aprovação verbal não vale.** Toda decisão registrada por escrito no grupo oficial.
-2. **Eu sou o único ponto de contato externo.** Se alguém do time NYO falar diretamente com o cliente, eu redireciono ao grupo.
-3. **Aprovação tácita é formal.** Quando o prazo do cliente vence sem resposta, eu mando uma mensagem registrando a aprovação automática e seguimos.
-4. **Confidencialidade.** Esta pasta tem informação sensível da operação Courchevel. Não compartilhar fora do time.
+### Status válidos em planilha (nunca usar "Entregue")
 
-## Como Claude deve me responder
+- `Backlog`, ainda não começou
+- `Em produção`, equipe trabalhando
+- `Aguardando cliente`, bloqueado por input/aprovação
+- `Concluído`, pronto (usar isto no lugar de "Entregue")
+- `Aprovado`, cliente aprovou explicitamente
+- `Atrasado`, passou do prazo
 
-- **Tom**: direto, em português, sem rodeios.
-- **Formato**: prefere listas e tabelas. Headers e bullets ajudam.
-- **Quando eu pedir mensagem pro cliente**: tom profissional caloroso, sem emojis em excesso, sem firula. Sempre termina pedindo "Confirmado" se for entrega ou aprovação.
-- **Quando eu pedir ata**: estrutura padrão (data, presentes, decisões, pendências com responsável e prazo, próximos passos).
-- **Quando eu pedir EOD pro Gabriel**: formato exato: ✅ entregues hoje · ⏳ amanhã · ⚠️ blockers · 🔴 cliente atrasado · 💸 mídia. Curto, 3 minutos de leitura.
-- **Quando eu pedir lembrete D-2**: tom amigável mas firme, cita o prazo, cita a regra de aprovação tácita.
-- **Quando eu pedir verificação de status**: olhe o que existe na pasta, não invente.
+### Nomenclatura de arquivos
 
-## Onde encontrar o que
+Padrão: `CVC-<TIPO>-<DESCRICAO>.ext`
 
-- Time + papéis: `01-time/quem-faz-o-que.md`
-- Allure (modelo, métricas, contexto): `02-empreendimentos/allure.md`
-- Triunfo: `02-empreendimentos/triunfo.md`
-- Courchevel institucional: `02-empreendimentos/courchevel.md`
-- Pilares e entregas com prazos: `03-entregas-prazos/pilares-e-entregas.md`
-- Linha do tempo: `03-entregas-prazos/linha-do-tempo.md`
-- Templates de WhatsApp: `04-comunicacao-cliente/templates-whatsapp.md`
-- Regras de aprovação: `04-comunicacao-cliente/regras-de-aprovacao.md`
-- ClickUp inicial: `05-clickup-starter/`
-- Prompts prontos: `00-comece-aqui/prompts-prontos.md`
+Tipos válidos: `COPY` `PLANILHA` `PAGINA` `BRIEFING` `PROPOSTA` `CONTRATO` `RELATORIO` `ATA` `APRESENTACAO` `VIDEO` `SCRIPT`
+
+Exemplos:
+- `CVC-ATA-ONBOARDING.docx`
+- `CVC-RELATORIO-SEMANAL-2026-W20.docx`
+- `CVC-BRIEFING-BRAND-PREMIUM.docx`
+
+---
+
+## Identidade visual NYO (referência)
+
+Já está hardcoded nos scripts. Não precisa alterar. Para referência:
+
+| Token | Hex | Uso |
+|---|---|---|
+| Vermelho NYO | `#FF0000` | Tags, destaques, CTAs |
+| Preto principal | `#111111` | Texto primário |
+| Cinza muted | `#6B6B6B` | Texto secundário |
+| Linha sutil | `#E0E0E0` | Bordas, divisórias |
+| Warm bege | `#FAF6EF` | Caixas de atenção |
+
+Tipografia:
+- Corpo e headings: **Arial** (fallback do Sequel Sans, fonte oficial NYO)
+- Tags `// SEÇÃO`: **Space Grotesk** (Google Fonts)
+- Mono: **Courier New**
+
+Taglines oficiais NYO: `// AI AGENTS NEVER SLEEP` · `// AUDIENCE NEVER SLEEP`
+
+---
+
+## Estrutura de pastas recomendada
+
+Espelha a estrutura que o Gabriel mantém localmente. Quando você gera uma ata, salva em `06-reunioes/<slug>/`:
+
+```
+Claude-Marina-2.0/
+├── CLAUDE.md                    ← este arquivo
+├── prompt-inicial.md            ← primeira mensagem pro Claude
+├── README.md                    ← como rodar
+├── package.json                 ← dependências (docx)
+├── .claude/
+│   └── skills/
+│       └── criar-ata-reuniao/   ← a skill
+│           ├── SKILL.md
+│           ├── scripts/
+│           │   ├── build_ata.js
+│           │   └── docx_to_pdf.js
+│           └── exemplos/
+│               ├── ata-kickoff.md
+│               └── ata-kickoff-content.json
+└── 06-reunioes/                 ← suas atas vão aqui
+    └── <slug-da-reuniao>/
+        ├── ata-content.json
+        └── ata-<slug>.docx
+```
+
+---
+
+## O que ainda NÃO está neste pacote (versão 2.0)
+
+Para evitar inflar o escopo, esta versão cobre **apenas ata de reunião**. Os próximos blocos vão entrar em 3.0:
+
+- Resumo semanal (toda sexta, todos os pilares)
+- Templates de briefing (Brand, Tráfego, Tech, Social)
+- Calendário editorial visual
+- Painel de pendências cliente / NYO
+
+Quando precisar de qualquer um desses, pede pro Gabriel a versão atualizada.
