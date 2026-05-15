@@ -1,0 +1,199 @@
+{
+  "header": {
+    "label": "NYO × COURCHEVEL",
+    "kind": "Ata de Reunião",
+    "title": "Onboarding",
+    "subtitle": "Marco oficial de início da operação · 4 pilares contratados (Brand, Tráfego, Tech e Social Media)"
+  },
+  "ficha": {
+    "cliente": "Courchevel Inc",
+    "data": "14 de maio de 2026",
+    "modalidade": "Online · gravada",
+    "duracao": "~90 minutos"
+  },
+
+  "contexto": [
+    "Reunião de kickoff entre NYO Agência e Courchevel Inc para abertura formal da operação contratada de 90 dias. O encontro consolidou time, escopo, prioridades, datas-chave e definiu o decisor único do dia a dia pelo lado do cliente.",
+    "A reunião foi conduzida sem reapresentações do time, dado o histórico de quatro reuniões anteriores entre as partes. O foco da call foi exclusivamente de execução: alinhar quem faz o quê, quando, e o que cada pilar precisa receber da Courchevel para destravar a primeira semana de entregas."
+  ],
+
+  "participantes": {
+    "cliente": [
+      { "nome": "Joelson Dos Santos Teixeira Delmondes", "papel": "Founder", "obs": "aprovador estratégico de marca e direção de produto" },
+      { "nome": "Enzo Delmondes", "papel": "Gestor Comercial", "obs": "decisor único do dia a dia designado nesta reunião" }
+    ],
+    "nyo": [
+      { "nome": "Gabriel Soier", "papel": "Sócio · Estratégia" },
+      { "nome": "Pedro Lucena", "papel": "Sócio · Estratégia" },
+      { "nome": "Marina Vilaça", "papel": "PM · Ponto focal único de comunicação" },
+      { "nome": "Caio Souza", "papel": "Gestor de Tráfego" },
+      { "nome": "João", "papel": "Tech" },
+      { "nome": "Gustavo Araújo + França", "papel": "Brand & Design" },
+      { "nome": "Leonardo Sérgio", "papel": "Social Media" },
+      { "nome": "John", "papel": "Filmmaker" },
+      { "nome": "Lucas e Mateus", "papel": "Agentes de IA" }
+    ]
+  },
+
+  "decisoes": [
+    {
+      "titulo": "Decisor único da Courchevel",
+      "descricao": "Enzo Delmondes é o ponto focal para aprovações operacionais do dia a dia, em interlocução direta com Marina, PM da NYO. Joelson permanece como aprovador estratégico de marca e direção de produto, participando dos momentos críticos do projeto."
+    },
+    {
+      "titulo": "Perfis de Instagram sob gestão",
+      "bullets": [
+        "@courchevelinc · institucional · reativação imediata",
+        "@allure.moema · empreendimento hoteleiro",
+        "Triunfo Campo Belo · perfil novo a ser criado pela NYO",
+        "Chevalier · em standby operacional, mas permanece no radar do projeto",
+        "Novo Empreendimento · perfil criado após naming aprovado"
+      ]
+    },
+    {
+      "titulo": "Branding do Novo Empreendimento como prioridade alta",
+      "descricao": "Confirmada urgência: o cliente precisa de logo, marca e cores antes da entrega física do empreendimento para aplicação nas placas de elevador e identidade física no hall. Reunião dedicada com Gustavo Araújo, Marina, Enzo e Joelson foi marcada para 15 de maio (manhã) para destravar o naming."
+    },
+    {
+      "titulo": "Gravações nos empreendimentos",
+      "bullets": [
+        "Janela confirmada: semana de 19 a 24 de maio",
+        "Filmmaker: John, com presença confirmada nas duas locações",
+        "Allure: gravações pela manhã, para aproveitar o café da manhã pronto",
+        "Triunfo: disponível em qualquer horário, com material decorado e detalhes técnicos do produto",
+        "Material existente: Joelson e Enzo enviarão fotos e vídeos já produzidos das unidades decoradas vendidas e alugadas"
+      ]
+    },
+    {
+      "titulo": "Comunicação oficial do projeto",
+      "bullets": [
+        "Grupo WhatsApp criado pela Marina imediatamente após esta reunião",
+        "Lista nominal de participantes enviada pelo cliente pós-call",
+        "Resumo semanal toda sexta-feira, primeiro envio em 15 de maio",
+        "Toda decisão verbal é registrada por escrito no grupo em até 1 hora"
+      ]
+    }
+  ],
+
+  "acordos": [
+    {
+      "titulo": "Courchevel Institucional",
+      "paragrafos": [
+        "Posicionamento como incorporadora e construtora ao mesmo tempo, com diferencial de construir o que vende. Perfil de Instagram em inatividade há 103 dias. A NYO inicia rebrand e reativação, com bio reescrita para viabilizar o pedido de selo verificado."
+      ]
+    },
+    {
+      "titulo": "Allure (Moema)",
+      "paragrafos": [
+        "Operação hoteleira de temporada. 84 das 128 unidades pertencem à Courchevel. Público principal: feiras, eventos e Fórmula 1, com fluxo via Congonhas para a Expo Imigrantes. Ocupação média de 60 a 65 por cento, com fundo de produção em dezembro e janeiro.",
+        "Problema crítico identificado e priorizado: identidade visual fragmentada entre Booking, Google e Instagram, com nomes diferentes (\"Maia Luri\", \"Luri\" e \"Allure\"), causando confusão com unidades de terceiros e prejuízo de reputação. Joelson já iniciou a mudança para \"Maia Luri\" na Booking. A NYO consolida a identidade nos primeiros 30 dias."
+      ]
+    },
+    {
+      "titulo": "Triunfo Campo Belo",
+      "paragrafos": [
+        "Empreendimento residencial de altíssimo padrão, 52 unidades de 80m², sem estúdios, sem NR, com duas lojas e sem restaurante. Construído antes de vender, ou seja, não é venda de planta.",
+        "Diferenciais técnicos a comunicar: floreiras na varanda e suíte, terraço técnico externo para aparelhos de ar condicionado, persianas elétricas com blackout, guarda-corpo em vidro, ponto para churrasqueira a carvão, pé direito de 2,88 metros, portas de madeira maciça, tratamento acústico nas paredes externas e andar técnico com piscina sem moradia abaixo.",
+        "Diferencial comercial novo: entrega 100 por cento decorada como opção, produto raríssimo em São Paulo pós-entrega.",
+        "Público-alvo formalizado: jovem bem-sucedido começando a vida, divorciados que querem permanecer na região e casais em ninho vazio buscando apartamento menor com o mesmo padrão de acabamento."
+      ]
+    },
+    {
+      "titulo": "Novo Empreendimento",
+      "paragrafos": [
+        "Localização provisoriamente referida como \"Brooklyn\". Em fase inicial. Naming, identidade visual e manual de marca são pré-requisito para a entrega física do empreendimento. Reunião dedicada agendada para 15 de maio."
+      ]
+    },
+    {
+      "titulo": "Chevalier",
+      "paragrafos": [
+        "Mantido em standby operacional, mas permanece no radar do projeto. Como o escopo, expectativas e materiais relacionados ao Chevalier não foram detalhados ainda, a NYO solicitará formalmente à Courchevel um documento por escrito cobrindo objetivos, materiais disponíveis e prazos esperados, para definir próximos passos operacionais."
+      ]
+    }
+  ],
+
+  "dependencia_cliente": {
+    "titulo": "Dependência crítica para a execução das primeiras semanas",
+    "label": "Atenção",
+    "palette": "warm",
+    "texto": "Boa parte das entregas previstas para as primeiras duas semanas depende de informações, acessos e materiais a serem enviados pela Courchevel. A NYO consegue executar o trabalho de planejamento, análise e design em paralelo, mas o cronograma operacional só destrava quando os seguintes itens chegam: acessos digitais às contas de anúncio e ferramentas, material bruto dos empreendimentos, briefings preenchidos, detalhamento do Chevalier e confirmação das datas de gravação.",
+    "complemento": "Atrasos nesses itens deslocam o início das campanhas, das landing pages e da operação de social media. Por isso, a maior parte das pendências do cliente aparece com prazo curto e responsável nominal nas próximas seções."
+  },
+
+  "pendencias_cliente": [
+    ["Lista de participantes do grupo WhatsApp", "Enzo", "Pós-call"],
+    ["Briefings de Brand, Tráfego, Tech e Social preenchidos", "Enzo + Joelson", "A definir após recebimento dos templates"],
+    ["Material bruto dos empreendimentos (fotos e vídeos existentes)", "Joelson + Enzo", "Antes de 19/05"],
+    ["Acessos digitais (contas de anúncio, CRM RD Station, site, sistema Allure)", "Enzo + time", "Dentro do prazo contratual de 5 d.u."],
+    ["Confirmação da disponibilidade de Rodrigo para gravação do Triunfo", "Enzo", "Pós-call"],
+    ["Disponibilidade de Joelson para reunião de Brand em 15/05 (manhã)", "Joelson", "Confirmado em call"],
+    ["Detalhamento por escrito do Chevalier (escopo, materiais, expectativas)", "Joelson + Enzo", "Após solicitação formal da NYO"]
+  ],
+
+  "pendencias_nyo": [
+    ["Grupo WhatsApp oficial criado e populado", "Marina", "14/05, pós-call"],
+    ["Ata da reunião enviada à Courchevel", "Marina", "15/05"],
+    ["Briefings de Brand, Tráfego, Tech e Social entregues à Courchevel", "Gabriel + heads", "15/05"],
+    ["Moodboards dos 3 empreendimentos", "Gustavo + França", "15/05"],
+    ["Reunião de Brand do Novo Empreendimento", "Gustavo + Marina", "15/05 (manhã)"],
+    ["Primeiro relatório semanal cobrindo 14-15/05", "Marina", "16/05"],
+    ["Roteiros para Instagram e LinkedIn cobrindo 18-25/05", "Leonardo + time Social", "18/05"],
+    ["Solicitação formal à Courchevel de detalhamento sobre o Chevalier", "Marina + Gabriel", "Próximos dias"]
+  ],
+
+  "stakeholders": [
+    { "nome": "Rodrigo", "papel": "Head de vendas do Triunfo", "obs": "candidato a aparecer em vídeos do empreendimento" },
+    { "nome": "Priscila", "papel": "Gerente do Allure", "obs": "ponto de relacionamento com influenciadores em modelo de permuta" },
+    { "nome": "Investidores do Allure", "papel": "Proprietários das unidades não pertencentes à Courchevel", "obs": "referência apenas indireta" }
+  ],
+
+  "proximos_passos": [
+    {
+      "titulo": "15 de maio (sexta-feira)",
+      "bullets": [
+        "Reunião de Brand do Novo Empreendimento pela manhã (Gustavo, Marina, Enzo e Joelson)",
+        "Briefings da Courchevel entregues pela NYO",
+        "Moodboards dos 3 empreendimentos apresentados"
+      ]
+    },
+    {
+      "titulo": "Semana de 19 a 24 de maio",
+      "bullets": [
+        "Gravações Allure (manhã) e Triunfo (qualquer horário), dependentes de aprovação prévia e alinhamento sobre roteiro",
+        "Roteiros de Social Media para o período 18-25/05 disponibilizados",
+        "Pesquisa de mercado de tráfego em andamento",
+        "Briefings preenchidos pelo cliente retornam para a NYO",
+        "Primeira landing page em desenvolvimento"
+      ]
+    },
+    {
+      "titulo": "Até 25 de maio",
+      "bullets": [
+        "Primeiro sprint do contrato concluído",
+        "Linha editorial parcial (15 a 25/05) executada",
+        "Linha editorial completa de junho enviada para aprovação",
+        "Primeiros anúncios no ar na conta de mídia paga"
+      ]
+    }
+  ],
+
+  "falas": [
+    { "autor": "Joelson · sobre o posicionamento", "texto": "O consumidor precisa enxergar primeiro valor antes de enxergar preço. Se ele for enxergar preço, ele vai pro concorrente, que é mais barato." },
+    { "autor": "Joelson · sobre o Triunfo", "texto": "Com o nosso conceito de incorporadora e construtora, foi levar a um empreendimento de 80 metros quadrados tudo que existe nos empreendimentos de alto padrão." },
+    { "autor": "Enzo · sobre o Triunfo", "texto": "Tem muitos desses detalhes que isso não acaba sendo passado na visita. Tudo isso agrega valor, tudo isso custou caro, então isso reflete no preço final." },
+    { "autor": "Gabriel · sobre a relação NYO × Courchevel", "texto": "Nós somos o parceiro comercial de marketing de vocês. Nada do que está sendo dito aqui está cravado na pedra." },
+    { "autor": "Gustavo · sobre o papel do design", "texto": "O branding vai ser o decorado de vocês, dentro do mercado de vocês. O metro quadrado de um empreendimento muda o seu valor através do decorado." },
+    { "autor": "Joelson · no encerramento", "texto": "Parabéns para todos. Um excelente dia." }
+  ],
+
+  "pontos_atencao": [
+    { "titulo": "Equilíbrio entre empreendimentos", "descricao": "compromisso interno da NYO de não permitir que entregas de um empreendimento sobrecarreguem outro, com distribuição equilibrada de recursos entre Triunfo, Allure e Courchevel institucional." },
+    { "titulo": "Chevalier", "descricao": "apesar de standby operacional, permanece no radar com solicitação formal de detalhamento à Courchevel." },
+    { "titulo": "Acessos digitais pendentes", "descricao": "risco operacional se não destravarem no prazo contratual de cinco dias úteis." },
+    { "titulo": "Sazonalidade do Allure", "descricao": "dezembro e janeiro com ocupação reduzida, janela de manutenção e oportunidade de campanha antecipada para a temporada seguinte." },
+    { "titulo": "Fórmula 1 2027", "descricao": "planejamento antecipado para recuperar margem perdida no evento de 2026." },
+    { "titulo": "Controle de carga de postagens", "descricao": "iniciar com o material já existente (fotos e vídeos prévios, conteúdo anterior) enquanto a gravação de novos materiais é executada no momento mais oportuno, sem comprometer o ritmo da linha editorial." }
+  ],
+
+  "assinatura": "Ata produzida em 14 de maio de 2026 pela NYO. Reunião gravada e transcrição arquivada no Drive oficial do projeto."
+}

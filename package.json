@@ -1,0 +1,16 @@
+{
+  "name": "claude-marina-2.0",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Pacote operacional Marina Vilaca (PM NYO) para gerar documentos do projeto Courchevel no Claude Code, padrao visual oficial NYO.",
+  "scripts": {
+    "ata": "node .claude/skills/criar-ata-reuniao/scripts/build_ata.js",
+    "ata:pdf": "node .claude/skills/criar-ata-reuniao/scripts/docx_to_pdf.js"
+  },
+  "dependencies": {
+    "docx": "^8.5.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
