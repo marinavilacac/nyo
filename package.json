@@ -5,10 +5,14 @@
   "description": "Pacote operacional Marina Vilaca (PM NYO) para gerar documentos do projeto Courchevel no Claude Code, padrao visual oficial NYO.",
   "scripts": {
     "ata": "node .claude/skills/criar-ata-reuniao/scripts/build_ata.js",
-    "ata:pdf": "node .claude/skills/criar-ata-reuniao/scripts/docx_to_pdf.js"
+    "ata:pdf": "node .claude/skills/criar-ata-reuniao/scripts/docx_to_pdf.js",
+    "clickup:setup": "node clickup/setup.js",
+    "clickup:import": "node clickup/import-tasks.js",
+    "clickup:status": "node clickup/status.js"
   },
   "dependencies": {
-    "docx": "^8.5.0"
+    "docx": "^8.5.0",
+    "dotenv": "^16.6.1"
   },
   "engines": {
     "node": ">=18"
