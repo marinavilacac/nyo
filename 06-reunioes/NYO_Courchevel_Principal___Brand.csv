@@ -1,0 +1,18 @@
+NYO × Courchevel · Brand,,,,,,,,
+Entregas do time. Preencha 1 linha por entrega. Mudanças aqui aparecem na dashboard.,,,,,,,,
+id,entrega,empreendimento,tipo,prazo_dashboard,data_entregue,status,link_drive,dependencia_cliente
+b001,Brief interno Brand (sessão equipe),Cross,Material,2026-05-11,2026-05-11,Concluído,,Não
+b002,Pesquisa de mercado e referências,Cross,Material,2026-05-11,2026-05-11,Concluído,,Não
+b003,Análise visual de concorrentes (3 empreendimentos),Cross,Material,2026-05-11,2026-05-11,Concluído,,Não
+b004,"Audit das identidades existentes (Allure, Triunfo, Courchevel)",Cross,Material,2026-05-12,2026-05-12,Concluído,,Não
+b005,Estudo de naming inicial (rascunho interno),Premium,Naming,2026-05-12,2026-05-12,Concluído,,Não
+b006,Briefing de imersão Branding enviado ao cliente,Premium,Material,2026-05-15,2026-05-15,Concluído,,Sim
+b007,Proposta de mood board (3 empreendimentos),Cross,Material,2026-05-15,,Atrasado,,Não
+b010,Brandbook Courchevel (institucional),Courchevel,Material,2026-05-22,,Em produção,,Não
+b011,Brandbook Triunfo,Triunfo,Material,2026-05-22,,Em produção,,Não
+b012,Brandbook Allure,Allure,Material,2026-05-22,,Em produção,,Não
+b013,Brandbook Chevalier,Chevalier,Material,2026-05-22,,Backlog,,Não
+b020,Naming Novo Premium (3-5 propostas),Premium,Naming,2026-06-05,,Aguardando cliente,,Sim
+b021,Identidade visual Novo Premium,Premium,Identidade,2026-07-15,,Backlog,,Sim
+b022,Manual de marca Novo Premium,Premium,Manual,2026-07-22,,Backlog,,Sim
+b023,"Assets digitais Novo Premium (feed, stories, banners)",Premium,Material,2026-07-29,,Backlog,,Sim
