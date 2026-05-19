@@ -101,7 +101,21 @@ async function getTasksFromList(listId) {
   return tasks;
 }
 
-function buildCustomFields(fieldMap, csvTask) {
+async function getListStatuses(listId) {
+  const list = await api("GET", `/list/${listId}`);
+  const statuses = list.statuses || [];
+  // mapa normalizado: "backlog" → "Backlog" (nome real no ClickUp)
+  const map = {};
+  for (const s of statuses) map[s.status.toLowerCase().trim()] = s.status;
+  return map;
+}
+
+function resolveStatus(statusMap, csvStatus) {
+  if (!csvStatus) return null;
+  return statusMap[csvStatus.toLowerCase().trim()] || null;
+}
+
+
   const fields = [];
 
   const emp = csvTask["Empreendimento"];
@@ -143,6 +157,9 @@ async function main() {
     const fieldMap = await ensureFields(list.id);
     console.log(" OK");
 
+    const statusMap = await getListStatuses(list.id);
+    console.log(`  Status disponíveis: ${Object.values(statusMap).join(", ")}`);
+
     const clickupTasks = await getTasksFromList(list.id);
     const clickupByName = {};
     for (const t of clickupTasks) clickupByName[t.name.toLowerCase().trim()] = t;
@@ -157,15 +174,18 @@ async function main() {
       const key = csvTask["Nome da tarefa"].toLowerCase().trim();
       const customFields = buildCustomFields(fieldMap, csvTask);
 
+      const resolvedStatus = resolveStatus(statusMap, csvTask["Status"]);
+
       if (!clickupByName[key]) {
         // Criar tarefa
         try {
-          await api("POST", `/list/${list.id}/task`, {
+          const body = {
             name:          csvTask["Nome da tarefa"],
             description:   csvTask["Descrição"] || "",
-            status:        csvTask["Status"],
             custom_fields: customFields,
-          });
+          };
+          if (resolvedStatus) body.status = resolvedStatus;
+          await api("POST", `/list/${list.id}/task`, body);
           process.stdout.write("C");
           created++;
         } catch (err) {
@@ -176,10 +196,10 @@ async function main() {
         // Atualizar tarefa existente
         const existing = clickupByName[key];
         try {
-          // Atualiza status
-          await api("PUT", `/task/${existing.id}`, { status: csvTask["Status"] });
+          const body = {};
+          if (resolvedStatus) body.status = resolvedStatus;
+          if (Object.keys(body).length) await api("PUT", `/task/${existing.id}`, body);
 
-          // Atualiza campos customizados
           for (const field of customFields) {
             await api("POST", `/task/${existing.id}/field/${field.id}`, { value: field.value });
           }
