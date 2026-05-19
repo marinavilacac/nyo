@@ -8,7 +8,8 @@
     "ata:pdf": "node .claude/skills/criar-ata-reuniao/scripts/docx_to_pdf.js",
     "clickup:setup": "node clickup/setup.js",
     "clickup:import": "node clickup/import-tasks.js",
-    "clickup:status": "node clickup/status.js"
+    "clickup:status": "node clickup/status.js",
+    "clickup:empreendimento": "node clickup/add-empreendimento.js"
   },
   "dependencies": {
     "docx": "^8.5.0",
