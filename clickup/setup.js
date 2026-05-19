@@ -37,16 +37,6 @@ async function api(method, path, body) {
   return json;
 }
 
-const STATUSES = [
-  { status: "Backlog",             color: "#6b6b6b", type: "open"   },
-  { status: "A iniciar",           color: "#0075ff", type: "open"   },
-  { status: "Em produção",         color: "#f2994a", type: "open"   },
-  { status: "Aguardando cliente",  color: "#e91e63", type: "open"   },
-  { status: "Recorrente",          color: "#7c3aed", type: "open"   },
-  { status: "Bloqueado",           color: "#ff0000", type: "open"   },
-  { status: "Aprovado / Concluído",color: "#00c875", type: "closed" },
-];
-
 const LISTS = [
   "Operação Cliente",
   "Tech",
@@ -191,21 +181,30 @@ async function main() {
   }
   console.log(`Space: ${space.name} (${space.id})`);
 
-  // 3. Folder "Courchevel"
-  console.log('\nCriando folder "Courchevel"...');
-  const folder = await api("POST", `/space/${space.id}/folder`, { name: "Courchevel" });
-  console.log(`  OK · folder id: ${folder.id}`);
+  // 3. Folder "Courchevel" (reutiliza se já existir)
+  console.log('\nBuscando folder "Courchevel"...');
+  const { folders } = await api("GET", `/space/${space.id}/folder?archived=false`);
+  let folder = folders.find(f => f.name === "Courchevel");
+  if (folder) {
+    console.log(`  Já existe · folder id: ${folder.id}`);
+  } else {
+    folder = await api("POST", `/space/${space.id}/folder`, { name: "Courchevel" });
+    console.log(`  Criado · folder id: ${folder.id}`);
+  }
 
   // 4. Listas + campos customizados
+  const { lists: existingLists } = await api("GET", `/folder/${folder.id}/list?archived=false`);
   const listIds = {};
   const fieldMaps = {};
   for (const listName of LISTS) {
-    process.stdout.write(`Criando lista "${listName}"... `);
-    const list = await api("POST", `/folder/${folder.id}/list`, {
-      name: listName,
-      status: STATUSES,
-    });
-    process.stdout.write(`OK (${list.id}) · campos: `);
+    let list = existingLists.find(l => l.name === listName);
+    if (list) {
+      process.stdout.write(`Lista "${listName}" já existe (${list.id}) · campos: `);
+    } else {
+      process.stdout.write(`Criando lista "${listName}"... `);
+      list = await api("POST", `/folder/${folder.id}/list`, { name: listName });
+      process.stdout.write(`OK (${list.id}) · campos: `);
+    }
     fieldMaps[listName] = await createCustomFields(list.id);
     listIds[listName] = list.id;
     console.log(" OK");
