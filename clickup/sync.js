@@ -2,9 +2,9 @@
 /**
  * clickup/sync.js
  * Sincroniza tarefas-30-dias.csv com as listas existentes na pasta Courchevel:
- *   - Cria campos customizados (Empreendimento, Prazo NYO, Prazo cliente) se não existirem
+ *   - Cria campo Empreendimento (dropdown) se não existir
  *   - Adiciona tarefas que estão no CSV mas não estão no ClickUp
- *   - Atualiza status, empreendimento e prazos das tarefas existentes
+ *   - Atualiza status e empreendimento das tarefas existentes
  *
  * Uso: npm run clickup:sync
  */
@@ -35,23 +35,21 @@ async function api(method, endpoint, body) {
   return json;
 }
 
-const FIELD_DEFS = [
-  {
-    name: "Empreendimento",
-    type: "drop_down",
-    type_config: {
-      options: [
-        { name: "Allure" },
-        { name: "Triunfo" },
-        { name: "Courchevelinc" },
-        { name: "Novo Premium" },
-        { name: "Chevalier" },
-        { name: "Cross" },
-        { name: "N/A" },
-      ],
-    },
+const EMPREENDIMENTO_DEF = {
+  name: "Empreendimento",
+  type: "drop_down",
+  type_config: {
+    options: [
+      { name: "Allure" },
+      { name: "Triunfo" },
+      { name: "Courchevelinc" },
+      { name: "Novo Premium" },
+      { name: "Chevalier" },
+      { name: "Cross" },
+      { name: "N/A" },
+    ],
   },
-];
+};
 
 function parseCSV(content) {
   const lines = content.trim().split("\n");
@@ -69,24 +67,27 @@ function parseCSV(content) {
   });
 }
 
-async function ensureFields(listId) {
-  const { fields: existing } = await api("GET", `/list/${listId}/field`);
-  const fieldMap = {};
-
-  for (const def of FIELD_DEFS) {
-    let field = existing.find(f => f.name === def.name);
-    if (!field) {
-      field = await api("POST", `/list/${listId}/field`, def);
-      process.stdout.write(`+`);
-    }
-    const optionMap = {};
-    for (const opt of field.type_config?.options || []) {
-      optionMap[opt.name] = opt.orderindex;
-    }
-    fieldMap[def.name] = { id: field.id, options: optionMap };
+async function ensureEmpreendimentoField(listId) {
+  const { fields } = await api("GET", `/list/${listId}/field`);
+  let field = fields.find(f => f.name === "Empreendimento");
+  if (!field) {
+    field = await api("POST", `/list/${listId}/field`, EMPREENDIMENTO_DEF);
+    process.stdout.write("+");
   }
+  const optionMap = {};
+  for (const opt of field.type_config?.options || []) {
+    optionMap[opt.name] = opt.orderindex;
+  }
+  return { id: field.id, options: optionMap };
+}
 
-  return fieldMap;
+async function getListStatuses(listId) {
+  const list = await api("GET", `/list/${listId}`);
+  const map = {};
+  for (const s of list.statuses || []) {
+    map[s.status.toLowerCase().trim()] = s.status;
+  }
+  return map;
 }
 
 async function getTasksFromList(listId) {
@@ -99,32 +100,6 @@ async function getTasksFromList(listId) {
     page++;
   }
   return tasks;
-}
-
-async function getListStatuses(listId) {
-  const list = await api("GET", `/list/${listId}`);
-  const statuses = list.statuses || [];
-  // mapa normalizado: "backlog" → "Backlog" (nome real no ClickUp)
-  const map = {};
-  for (const s of statuses) map[s.status.toLowerCase().trim()] = s.status;
-  return map;
-}
-
-function resolveStatus(statusMap, csvStatus) {
-  if (!csvStatus) return null;
-  return statusMap[csvStatus.toLowerCase().trim()] || null;
-}
-
-
-  const fields = [];
-
-  const emp = csvTask["Empreendimento"];
-  if (emp && emp !== "N/A" && fieldMap["Empreendimento"]) {
-    const orderindex = fieldMap["Empreendimento"].options[emp];
-    if (orderindex !== undefined) fields.push({ id: fieldMap["Empreendimento"].id, value: orderindex });
-  }
-
-  return fields;
 }
 
 async function main() {
@@ -142,9 +117,6 @@ async function main() {
   const { lists } = await api("GET", `/folder/${FOLDER_ID}/list?archived=false`);
   console.log(`Listas: ${lists.map(l => l.name).join(", ")}\n`);
 
-  const listByName = {};
-  for (const l of lists) listByName[l.name.toLowerCase().trim()] = l;
-
   let created = 0, updated = 0, erros = 0;
 
   for (const list of lists) {
@@ -154,7 +126,7 @@ async function main() {
     console.log(`\n[${list.name}] ${csvForList.length} tarefas no CSV`);
 
     process.stdout.write("  Campos: ");
-    const fieldMap = await ensureFields(list.id);
+    const empField = await ensureEmpreendimentoField(list.id);
     console.log(" OK");
 
     const statusMap = await getListStatuses(list.id);
@@ -163,21 +135,23 @@ async function main() {
     const clickupTasks = await getTasksFromList(list.id);
     const clickupByName = {};
     for (const t of clickupTasks) clickupByName[t.name.toLowerCase().trim()] = t;
-
     console.log(`  ${clickupTasks.length} tarefas no ClickUp`);
 
-    // Tarefas faltando
     const missing = csvForList.filter(t => !clickupByName[t["Nome da tarefa"].toLowerCase().trim()]);
-    if (missing.length) console.log(`  ${missing.length} tarefas faltando → criando...`);
+    if (missing.length) console.log(`  ${missing.length} faltando → criando...`);
 
     for (const csvTask of csvForList) {
       const key = csvTask["Nome da tarefa"].toLowerCase().trim();
-      const customFields = buildCustomFields(fieldMap, csvTask);
+      const resolvedStatus = statusMap[csvTask["Status"].toLowerCase().trim()] || null;
 
-      const resolvedStatus = resolveStatus(statusMap, csvTask["Status"]);
+      const customFields = [];
+      const emp = csvTask["Empreendimento"];
+      if (emp && emp !== "N/A") {
+        const orderindex = empField.options[emp];
+        if (orderindex !== undefined) customFields.push({ id: empField.id, value: orderindex });
+      }
 
       if (!clickupByName[key]) {
-        // Criar tarefa
         try {
           const body = {
             name:          csvTask["Nome da tarefa"],
@@ -193,7 +167,6 @@ async function main() {
           erros++;
         }
       } else {
-        // Atualizar tarefa existente
         const existing = clickupByName[key];
         try {
           const body = {};
