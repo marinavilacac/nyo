@@ -155,7 +155,20 @@ async function main() {
   // 1. Workspaces
   const { teams } = await api("GET", "/team");
   if (!teams.length) { console.error("Nenhum workspace encontrado."); process.exit(1); }
-  const workspace = teams[0];
+
+  let workspace;
+  const workspaceIdEnv = process.env.CLICKUP_WORKSPACE_ID;
+  if (workspaceIdEnv) {
+    workspace = teams.find(t => t.id === workspaceIdEnv);
+    if (!workspace) { console.error(`Workspace ${workspaceIdEnv} não encontrado.`); process.exit(1); }
+  } else if (teams.length === 1) {
+    workspace = teams[0];
+  } else {
+    console.log("Workspaces disponíveis:");
+    teams.forEach(t => console.log(`  [${t.id}] ${t.name}`));
+    console.log("\nDefina CLICKUP_WORKSPACE_ID=<id> no .env e rode novamente.");
+    process.exit(0);
+  }
   console.log(`Workspace: ${workspace.name} (${workspace.id})`);
 
   // 2. Spaces
