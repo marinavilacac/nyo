@@ -1,0 +1,9 @@
+NYO × Courchevel · Tráfego,,,,,,,,
+Entregas do time. Preencha 1 linha por entrega. Mudanças aqui aparecem na dashboard.,,,,,,,,
+id,entrega,empreendimento,tipo,prazo_dashboard,data_entregue,status,link_drive,dependencia_cliente
+t001,Brief interno Tráfego,Cross,Setup,2026-05-11,2026-05-11,Concluído,,Não
+t002,Setup técnico Meta + Google + GA4 + pixels + UTMs,Cross,Setup,2026-05-19,,Em produção,,Sim
+t003,Dashboard de tráfego configurado,Cross,Dashboard,2026-05-20,,Em produção,,Não
+t004,Análise concorrencial de mídia paga,Cross,Análise,2026-05-21,,Em produção,,Não
+t005,Campanhas Meta + Google estruturadas,Cross,Campanha,2026-05-22,,Aguardando cliente,,Sim
+t006,Plano de mídia Mês 2,Cross,Planejamento,2026-05-25,,Aguardando cliente,,Sim

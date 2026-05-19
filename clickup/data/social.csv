@@ -1,0 +1,23 @@
+NYO × Courchevel · Social,,,,,,,,
+Entregas do time. Preencha 1 linha por entrega. Mudanças aqui aparecem na dashboard.,,,,,,,,
+id,entrega,empreendimento,tipo,prazo_dashboard,data_entregue,status,link_drive,dependencia_cliente
+s001,Diagnóstico de redes sociais @courchevelinc,Courchevel,Análise,2026-05-11,2026-05-11,Concluído,,Não
+s002,Diagnóstico de redes sociais @allure.moema,Allure,Análise,2026-05-11,2026-05-11,Concluído,,Não
+s003,Diagnóstico de redes sociais Triunfo,Triunfo,Análise,2026-05-12,2026-05-12,Concluído,,Não
+s004,Roteiros de conteúdo · primeira leva,Cross,Roteiro,2026-05-15,,Em produção,,Não
+s010,Linha editorial parcial (maio · 15 dias),Cross,Calendário,2026-05-14,,Em produção,,Não
+s011,"3 primeiros posts (Courchevel, Triunfo, Allure)",Cross,Post,2026-05-22,,Aguardando cliente,,Sim
+s012,Reativação editorial @courchevelinc,Courchevel,Post,2026-05-22,,Em produção,,Não
+s013,Aplicação selo verificado (3 perfis),Cross,Outros,2026-05-29,,Backlog,,Não
+s014,Gravação · primeira bateria,Cross,Reels,2026-05-27,,Aguardando cliente,,Sim
+s015,Linha editorial completa (mês 1),Cross,Calendário,2026-05-25,,Em produção,,Não
+s020,Produção Mês 1 · Triunfo,Triunfo,Produção,2026-05-31,,Em produção,,Não
+s021,Produção Mês 1 · Allure,Allure,Produção,2026-05-31,,Em produção,,Não
+s022,Produção Mês 1 · Courchevel,Courchevel,Produção,2026-05-31,,Em produção,,Não
+s030,Produção Mês 2 · Triunfo,Triunfo,Produção,2026-06-30,,Backlog,,Não
+s031,Produção Mês 2 · Allure,Allure,Produção,2026-06-30,,Backlog,,Não
+s032,Produção Mês 2 · Courchevel,Courchevel,Produção,2026-06-30,,Backlog,,Não
+s040,Produção Mês 3 · Triunfo,Triunfo,Produção,2026-07-31,,Backlog,,Não
+s041,Produção Mês 3 · Allure,Allure,Produção,2026-07-31,,Backlog,,Não
+s042,Produção Mês 3 · Courchevel,Courchevel,Produção,2026-07-31,,Backlog,,Não
+s050,Conteúdo Chevalier · em standby,Chevalier,Outros,,,Aguardando cliente,,Sim

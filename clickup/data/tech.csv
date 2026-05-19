@@ -1,0 +1,23 @@
+NYO × Courchevel · Tech,,,,,,,,
+Entregas do time. Preencha 1 linha por entrega. Mudanças aqui aparecem na dashboard.,,,,,,,,
+id,entrega,empreendimento,tipo,prazo_dashboard,data_entregue,status,link_drive,dependencia_cliente
+c001,Brief interno Tech,Cross,Setup,2026-05-11,2026-05-11,Concluído,,Não
+c002,Arquitetura dos 5 agentes IA,Cross,Arquitetura,2026-05-12,2026-05-12,Concluído,,Não
+c003,Dashboard operacional NYO × Courchevel,Cross,Dashboard,2026-05-12,2026-05-12,Concluído,,Não
+c010,Layout LP1 Triunfo,Triunfo,LP,2026-05-15,,Em produção,,Sim
+c011,Layout LP2 Allure,Allure,LP,2026-05-18,,Em produção,,Sim
+c012,Layout LP3 Courchevel (institucional),Courchevel,LP,2026-05-25,,Backlog,,Sim
+c013,Layout LP4 Novo Premium,Premium,LP,2026-07-01,,Backlog,,Sim
+c014,Layout LP5 Chevalier,Chevalier,LP,2026-06-01,,Backlog,,Sim
+c020,LP1 Triunfo · homologação,Triunfo,LP,2026-05-22,,Backlog,,Não
+c021,LP2 Allure · homologação,Allure,LP,2026-05-29,,Backlog,,Não
+c022,LP3 Courchevel · homologação,Courchevel,LP,2026-06-08,,Backlog,,Não
+c023,LP4 Novo Premium · homologação,Premium,LP,2026-07-15,,Backlog,,Não
+c024,LP5 Chevalier · homologação,Chevalier,LP,2026-06-15,,Backlog,,Não
+c030,Agente SDR Triunfo,Triunfo,Agente IA,2026-06-12,,Em produção,,Sim
+c031,Agente SDR Allure,Allure,Agente IA,2026-06-12,,Em produção,,Sim
+c032,Agente Concierge Allure,Allure,Agente IA,2026-06-12,,Em produção,,Sim
+c033,Agente SDR Novo Premium,Premium,Agente IA,2026-07-30,,Backlog,,Sim
+c034,Agente Concierge Novo Premium,Premium,Agente IA,2026-07-30,,Backlog,,Sim
+c040,"CRM Courchevel (pipeline, histórico, integração IA)",Cross,CRM,2026-06-27,,Em produção,,Não
+c041,Dashboard cliente em tempo real,Cross,Dashboard,2026-06-27,,Em produção,,Não

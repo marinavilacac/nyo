@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
  * clickup/sync.js
- * Sincroniza tarefas-30-dias.csv com as listas existentes na pasta Courchevel:
- *   - Cria campo Empreendimento (dropdown) se não existir
- *   - Adiciona tarefas que estão no CSV mas não estão no ClickUp
- *   - Atualiza status e empreendimento das tarefas existentes
+ * Fonte: clickup/data/{brand,trafego,tech,social}.csv
+ * - Cria campo Empreendimento em todas as listas se não existir
+ * - Cria tarefas faltando
+ * - Atualiza empreendimento, status e due_date (prazo_dashboard - 2 dias)
  *
  * Uso: npm run clickup:sync
  */
@@ -35,6 +35,32 @@ async function api(method, endpoint, body) {
   return json;
 }
 
+// setor no CSV → nome da lista no ClickUp
+const LIST_MAP = {
+  brand:   "Brand",
+  trafego: "Tráfego",
+  tech:    "Tech",
+  social:  "Social Media",
+};
+
+// CSV files por setor
+const CSV_FILES = {
+  brand:   path.join(__dirname, "data/brand.csv"),
+  trafego: path.join(__dirname, "data/trafego.csv"),
+  tech:    path.join(__dirname, "data/tech.csv"),
+  social:  path.join(__dirname, "data/social.csv"),
+};
+
+// Empreendimento CSV → opção no campo ClickUp
+const EMP_MAP = {
+  "Cross":      "Cross",
+  "Triunfo":    "Triunfo",
+  "Allure":     "Allure",
+  "Courchevel": "Courchevelinc",
+  "Premium":    "Novo Premium",
+  "Chevalier":  "Chevalier",
+};
+
 const EMPREENDIMENTO_DEF = {
   name: "Empreendimento",
   type: "drop_down",
@@ -51,12 +77,11 @@ const EMPREENDIMENTO_DEF = {
   },
 };
 
-const PRAZO_NYO_DEF = { name: "Prazo NYO", type: "text" };
-
 function parseCSV(content) {
   const lines = content.trim().split("\n");
-  const headers = lines[0].split(",");
-  return lines.slice(1).map(line => {
+  // linha 0: título, linha 1: descrição, linha 2: headers
+  const headers = lines[2].split(",").map(h => h.trim());
+  return lines.slice(3).map(line => {
     const values = [];
     let cur = "", inQ = false;
     for (const ch of line) {
@@ -65,34 +90,31 @@ function parseCSV(content) {
       cur += ch;
     }
     values.push(cur.trim());
-    return Object.fromEntries(headers.map((h, i) => [h.trim(), (values[i] || "").trim()]));
+    return Object.fromEntries(headers.map((h, i) => [h, (values[i] || "").trim()]));
   });
 }
 
-async function ensureFields(listId) {
+// prazo_dashboard (YYYY-MM-DD) - 2 dias → Unix ms para ClickUp
+function toDueDate(dateStr) {
+  if (!dateStr) return null;
+  const d = new Date(dateStr + "T12:00:00Z");
+  if (isNaN(d)) return null;
+  d.setDate(d.getDate() - 2);
+  return d.getTime();
+}
+
+async function ensureEmpreendimentoField(listId) {
   const { fields } = await api("GET", `/list/${listId}/field`);
-
-  let empField = fields.find(f => f.name === "Empreendimento");
-  if (!empField) {
-    empField = await api("POST", `/list/${listId}/field`, EMPREENDIMENTO_DEF);
-    process.stdout.write("+emp");
+  let field = fields.find(f => f.name === "Empreendimento");
+  if (!field) {
+    field = await api("POST", `/list/${listId}/field`, EMPREENDIMENTO_DEF);
+    process.stdout.write(" +campo");
   }
-  // usa option.id (UUID), não orderindex
-  const empOptions = {};
-  for (const opt of empField.type_config?.options || []) {
-    empOptions[opt.name] = opt.id;
+  const options = {};
+  for (const opt of field.type_config?.options || []) {
+    options[opt.name] = opt.id;
   }
-
-  let prazoField = fields.find(f => f.name === "Prazo NYO");
-  if (!prazoField) {
-    prazoField = await api("POST", `/list/${listId}/field`, PRAZO_NYO_DEF);
-    process.stdout.write("+prazo");
-  }
-
-  return {
-    emp:   { id: empField.id,   options: empOptions },
-    prazo: { id: prazoField.id },
-  };
+  return { id: field.id, options };
 }
 
 async function getListStatuses(listId) {
@@ -119,86 +141,73 @@ async function getTasksFromList(listId) {
 async function main() {
   console.log("=== Sync ClickUp · Projeto Courchevel ===\n");
 
-  const csvPath = path.join(__dirname, "tarefas-30-dias.csv");
-  if (!fs.existsSync(csvPath)) {
-    console.error("ERRO: clickup/tarefas-30-dias.csv não encontrado.");
-    process.exit(1);
+  // Carrega todos os CSVs
+  const allTasks = {};
+  for (const [setor, file] of Object.entries(CSV_FILES)) {
+    if (!fs.existsSync(file)) { console.warn(`AVISO: ${file} não encontrado`); continue; }
+    allTasks[setor] = parseCSV(fs.readFileSync(file, "utf8"));
+    console.log(`${LIST_MAP[setor]}: ${allTasks[setor].length} tarefas no CSV`);
   }
 
-  const csvTasks = parseCSV(fs.readFileSync(csvPath, "utf8"));
-  console.log(`${csvTasks.length} tarefas no CSV\n`);
-
   const { lists } = await api("GET", `/folder/${FOLDER_ID}/list?archived=false`);
-  console.log(`Listas: ${lists.map(l => l.name).join(", ")}\n`);
+  const listByName = {};
+  for (const l of lists) listByName[l.name.toLowerCase().trim()] = l;
 
   let created = 0, updated = 0, erros = 0;
 
-  for (const list of lists) {
-    const csvForList = csvTasks.filter(t => t["Lista"].toLowerCase().trim() === list.name.toLowerCase().trim());
-    if (!csvForList.length) continue;
+  for (const [setor, csvTasks] of Object.entries(allTasks)) {
+    const listName = LIST_MAP[setor];
+    const list = listByName[listName.toLowerCase().trim()];
+    if (!list) { console.warn(`\nAVISO: lista "${listName}" não encontrada no ClickUp`); continue; }
 
-    console.log(`\n[${list.name}] ${csvForList.length} tarefas no CSV`);
+    console.log(`\n[${listName}]`);
 
-    process.stdout.write("  Campos: ");
-    const fieldMap = await ensureFields(list.id);
-    console.log(" OK");
-
-    const statusMap = await getListStatuses(list.id);
-    console.log(`  Status disponíveis: ${Object.values(statusMap).join(", ")}`);
-
+    const empField    = await ensureEmpreendimentoField(list.id);
+    const statusMap   = await getListStatuses(list.id);
     const clickupTasks = await getTasksFromList(list.id);
+
     const clickupByName = {};
     for (const t of clickupTasks) clickupByName[t.name.toLowerCase().trim()] = t;
-    console.log(`  ${clickupTasks.length} tarefas no ClickUp`);
 
-    const missing = csvForList.filter(t => !clickupByName[t["Nome da tarefa"].toLowerCase().trim()]);
-    if (missing.length) console.log(`  ${missing.length} faltando → criando...`);
+    const missing = csvTasks.filter(t => !clickupByName[t.entrega.toLowerCase().trim()]);
+    console.log(`  ${clickupTasks.length} no ClickUp · ${csvTasks.length} no CSV · ${missing.length} faltando`);
 
-    for (const csvTask of csvForList) {
-      const key = csvTask["Nome da tarefa"].toLowerCase().trim();
-      const resolvedStatus = statusMap[csvTask["Status"].toLowerCase().trim()] || null;
+    for (const row of csvTasks) {
+      const key            = row.entrega.toLowerCase().trim();
+      const empClickup     = EMP_MAP[row.empreendimento] || row.empreendimento;
+      const empOptionId    = empField.options[empClickup];
+      const resolvedStatus = statusMap[row.status.toLowerCase().trim()] || null;
+      const dueDate        = toDueDate(row.prazo_dashboard);
 
       const customFields = [];
-      const emp = csvTask["Empreendimento"];
-      if (emp && emp !== "N/A") {
-        const optId = fieldMap.emp.options[emp];
-        if (optId) customFields.push({ id: fieldMap.emp.id, value: optId });
-      }
-      const prazo = csvTask["Quando dispara"];
-      if (prazo && prazo !== "N/A") {
-        customFields.push({ id: fieldMap.prazo.id, value: prazo });
-      }
+      if (empOptionId) customFields.push({ id: empField.id, value: empOptionId });
 
       if (!clickupByName[key]) {
         try {
-          const body = {
-            name:          csvTask["Nome da tarefa"],
-            description:   csvTask["Descrição"] || "",
-            custom_fields: customFields,
-          };
-          if (resolvedStatus) body.status = resolvedStatus;
+          const body = { name: row.entrega, custom_fields: customFields };
+          if (resolvedStatus) body.status   = resolvedStatus;
+          if (dueDate)        body.due_date = dueDate;
           await api("POST", `/list/${list.id}/task`, body);
           process.stdout.write("C");
           created++;
         } catch (err) {
-          console.error(`\n  ERRO ao criar "${csvTask["Nome da tarefa"]}": ${err.message}`);
+          console.error(`\n  ERRO criar "${row.entrega}": ${err.message}`);
           erros++;
         }
       } else {
         const existing = clickupByName[key];
         try {
           const body = {};
-          if (resolvedStatus) body.status = resolvedStatus;
+          if (resolvedStatus) body.status   = resolvedStatus;
+          if (dueDate)        body.due_date = dueDate;
           if (Object.keys(body).length) await api("PUT", `/task/${existing.id}`, body);
-
-          for (const field of customFields) {
-            await api("POST", `/task/${existing.id}/field/${field.id}`, { value: field.value });
+          for (const f of customFields) {
+            await api("POST", `/task/${existing.id}/field/${f.id}`, { value: f.value });
           }
-
           process.stdout.write(".");
           updated++;
         } catch (err) {
-          console.error(`\n  ERRO ao atualizar "${csvTask["Nome da tarefa"]}": ${err.message}`);
+          console.error(`\n  ERRO atualizar "${row.entrega}": ${err.message}`);
           erros++;
         }
       }
