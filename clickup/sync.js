@@ -51,6 +51,8 @@ const EMPREENDIMENTO_DEF = {
   },
 };
 
+const PRAZO_NYO_DEF = { name: "Prazo NYO", type: "text" };
+
 function parseCSV(content) {
   const lines = content.trim().split("\n");
   const headers = lines[0].split(",");
@@ -67,18 +69,30 @@ function parseCSV(content) {
   });
 }
 
-async function ensureEmpreendimentoField(listId) {
+async function ensureFields(listId) {
   const { fields } = await api("GET", `/list/${listId}/field`);
-  let field = fields.find(f => f.name === "Empreendimento");
-  if (!field) {
-    field = await api("POST", `/list/${listId}/field`, EMPREENDIMENTO_DEF);
-    process.stdout.write("+");
+
+  let empField = fields.find(f => f.name === "Empreendimento");
+  if (!empField) {
+    empField = await api("POST", `/list/${listId}/field`, EMPREENDIMENTO_DEF);
+    process.stdout.write("+emp");
   }
-  const optionMap = {};
-  for (const opt of field.type_config?.options || []) {
-    optionMap[opt.name] = opt.orderindex;
+  // usa option.id (UUID), não orderindex
+  const empOptions = {};
+  for (const opt of empField.type_config?.options || []) {
+    empOptions[opt.name] = opt.id;
   }
-  return { id: field.id, options: optionMap };
+
+  let prazoField = fields.find(f => f.name === "Prazo NYO");
+  if (!prazoField) {
+    prazoField = await api("POST", `/list/${listId}/field`, PRAZO_NYO_DEF);
+    process.stdout.write("+prazo");
+  }
+
+  return {
+    emp:   { id: empField.id,   options: empOptions },
+    prazo: { id: prazoField.id },
+  };
 }
 
 async function getListStatuses(listId) {
@@ -126,7 +140,7 @@ async function main() {
     console.log(`\n[${list.name}] ${csvForList.length} tarefas no CSV`);
 
     process.stdout.write("  Campos: ");
-    const empField = await ensureEmpreendimentoField(list.id);
+    const fieldMap = await ensureFields(list.id);
     console.log(" OK");
 
     const statusMap = await getListStatuses(list.id);
@@ -147,8 +161,12 @@ async function main() {
       const customFields = [];
       const emp = csvTask["Empreendimento"];
       if (emp && emp !== "N/A") {
-        const orderindex = empField.options[emp];
-        if (orderindex !== undefined) customFields.push({ id: empField.id, value: orderindex });
+        const optId = fieldMap.emp.options[emp];
+        if (optId) customFields.push({ id: fieldMap.emp.id, value: optId });
+      }
+      const prazo = csvTask["Quando dispara"];
+      if (prazo && prazo !== "N/A") {
+        customFields.push({ id: fieldMap.prazo.id, value: prazo });
       }
 
       if (!clickupByName[key]) {
