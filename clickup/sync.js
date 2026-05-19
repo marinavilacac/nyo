@@ -51,7 +51,6 @@ const FIELD_DEFS = [
       ],
     },
   },
-  { name: "Prazo NYO", type: "text" },
 ];
 
 function parseCSV(content) {
@@ -109,11 +108,6 @@ function buildCustomFields(fieldMap, csvTask) {
   if (emp && emp !== "N/A" && fieldMap["Empreendimento"]) {
     const orderindex = fieldMap["Empreendimento"].options[emp];
     if (orderindex !== undefined) fields.push({ id: fieldMap["Empreendimento"].id, value: orderindex });
-  }
-
-  const prazoNyo = csvTask["Quando dispara"];
-  if (prazoNyo && prazoNyo !== "N/A" && fieldMap["Prazo NYO"]) {
-    fields.push({ id: fieldMap["Prazo NYO"].id, value: prazoNyo });
   }
 
   return fields;
