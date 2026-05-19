@@ -124,17 +124,29 @@ const CUSTOM_FIELDS = [
 ];
 
 async function createCustomFields(listId) {
+  const { fields: existing } = await api("GET", `/list/${listId}/field`);
   const fieldMap = {};
   for (const field of CUSTOM_FIELDS) {
-    const created = await api("POST", `/list/${listId}/field`, field);
+    const found = existing.find(f => f.name === field.name);
     const optionMap = {};
-    if (field.type === "drop_down" && created.type_config?.options) {
-      for (const opt of created.type_config.options) {
-        optionMap[opt.name] = opt.orderindex;
+    if (found) {
+      if (found.type_config?.options) {
+        for (const opt of found.type_config.options) {
+          optionMap[opt.name] = opt.orderindex;
+        }
       }
+      fieldMap[field.name] = { id: found.id, options: optionMap };
+      process.stdout.write("~");
+    } else {
+      const created = await api("POST", `/list/${listId}/field`, field);
+      if (field.type === "drop_down" && created.type_config?.options) {
+        for (const opt of created.type_config.options) {
+          optionMap[opt.name] = opt.orderindex;
+        }
+      }
+      fieldMap[field.name] = { id: created.id, options: optionMap };
+      process.stdout.write(".");
     }
-    fieldMap[field.name] = { id: created.id, options: optionMap };
-    process.stdout.write(".");
   }
   return fieldMap;
 }
