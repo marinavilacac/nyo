@@ -51,8 +51,7 @@ const FIELD_DEFS = [
       ],
     },
   },
-  { name: "Prazo NYO",     type: "text" },
-  { name: "Prazo cliente", type: "text" },
+  { name: "Prazo NYO", type: "text" },
 ];
 
 function parseCSV(content) {
@@ -115,11 +114,6 @@ function buildCustomFields(fieldMap, csvTask) {
   const prazoNyo = csvTask["Quando dispara"];
   if (prazoNyo && prazoNyo !== "N/A" && fieldMap["Prazo NYO"]) {
     fields.push({ id: fieldMap["Prazo NYO"].id, value: prazoNyo });
-  }
-
-  const prazoCliente = csvTask["Prazo cliente (após receber)"];
-  if (prazoCliente && prazoCliente !== "N/A" && fieldMap["Prazo cliente"]) {
-    fields.push({ id: fieldMap["Prazo cliente"].id, value: prazoCliente });
   }
 
   return fields;
