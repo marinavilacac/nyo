@@ -1,0 +1,24 @@
+NYO × Courchevel · Tráfego,,,,,,,,
+Entregas do time. Preencha 1 linha por entrega. Mudanças aqui aparecem na dashboard.,,,,,,,,
+id,entrega,empreendimento,tipo,prazo_dashboard,data_entregue,status,link_drive,dependencia_cliente
+t001,Brief interno Tráfego,Cross,Setup,2026-05-11,2026-05-11,Concluído,,Não
+t002,Setup técnico Meta + Google + GA4 + pixels + UTMs,Cross,Setup,2026-05-19,,Em produção,,Sim
+t003,Dashboard de tráfego configurado,Cross,Dashboard,2026-05-20,,Em produção,,Não
+t004,Análise concorrencial de mídia paga,Cross,Análise,2026-05-21,,Em produção,,Não
+t005,Campanhas Meta + Google estruturadas,Cross,Campanha,2026-05-22,,Aguardando cliente,,Sim
+t006,Plano de mídia Mês 2,Cross,Planejamento,2026-05-25,,Aguardando cliente,,Sim
+t010,Diagnóstico de Tracking e Atribuição,Cross,Análise,2026-05-23,,Backlog,,Não
+t011,Mapa de Ativos da Operação,Cross,Análise,2026-05-23,,Backlog,,Não
+t012,Divisão de verba R$10k Mês 1,Cross,Planejamento,2026-05-23,,Backlog,,Não
+t013,Tracking server-side Pixel + CAPI,Cross,Setup,2026-05-28,,Backlog,,Não
+t014,Webhook Make CRM → CAPI loop,Cross,Setup,,,Backlog,,Não
+t015,Lead Scoring 4 tiers,Cross,Setup,2026-05-25,,Backlog,,Não
+t016,Custom Audiences + LAL escalonada,Cross,Setup,2026-05-23,,Backlog,,Não
+t017,ManyChat Comment-to-DM,Cross,Setup,,,Aguardando cliente,,Sim
+t018,Roteiros AD01-03 Triunfo,Triunfo,Roteiro,2026-05-25,,Backlog,,Não
+t019,Roteiros AD01-03 Allure,Allure,Roteiro,2026-05-25,,Backlog,,Não
+t020,Plano de Mídia Mês 3,Cross,Planejamento,2026-07-22,,Backlog,,Não
+t021,LIVE ad sets Triunfo + Allure,Cross,Campanha,2026-06-01,,Backlog,,Não
+t022,Otimização semanal de campanhas,Cross,Campanha,,,Backlog,,Não
+t023,Relatório semanal de tráfego,Cross,Relatório,,,Backlog,,Não
+t024,Dashboard Looker Studio CAC/LTV,Cross,Dashboard,2026-06-09,,Backlog,,Não
