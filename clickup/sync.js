@@ -198,19 +198,10 @@ async function main() {
         const existing = clickupByName[key];
         try {
           const body = {};
-<<<<<<< HEAD
-          if (resolvedStatus) body.status   = resolvedStatus;
-          if (dueDate)        body.due_date = dueDate;
+          if (resolvedStatus)      body.status        = resolvedStatus;
+          if (dueDate)             body.due_date       = dueDate;
+          if (customFields.length) body.custom_fields  = customFields;
           if (Object.keys(body).length) await api("PUT", `/task/${existing.id}`, body);
-          for (const f of customFields) {
-            await api("POST", `/task/${existing.id}/field/${f.id}`, { value: f.value });
-          }
-=======
-          if (resolvedStatus)     body.status        = resolvedStatus;
-          if (dueDate)            body.due_date       = dueDate;
-          if (customFields.length) body.custom_fields = customFields;
-          if (Object.keys(body).length) await api("PUT", `/task/${existing.id}`, body);
->>>>>>> claude/create-folder-structure-Yk4HJ
           process.stdout.write(".");
           updated++;
         } catch (err) {
