@@ -178,6 +178,7 @@ async function main() {
       const empOptionId    = empField.options[empClickup];
       const resolvedStatus = statusMap[row.status.toLowerCase().trim()] || null;
       const dueDate        = toDueDate(row.prazo_dashboard);
+      const descricao      = row.descricao || "";
 
       const customFields = [];
       if (empOptionId) customFields.push({ id: empField.id, value: empOptionId });
@@ -185,8 +186,9 @@ async function main() {
       if (!clickupByName[key]) {
         try {
           const body = { name: row.entrega };
-          if (resolvedStatus) body.status   = resolvedStatus;
-          if (dueDate)        body.due_date = dueDate;
+          if (resolvedStatus) body.status      = resolvedStatus;
+          if (dueDate)        body.due_date    = dueDate;
+          if (descricao)      body.description = descricao;
           await api("POST", `/list/${list.id}/task`, body);
           process.stdout.write("C");
           created++;
@@ -198,8 +200,9 @@ async function main() {
         const existing = clickupByName[key];
         try {
           const body = {};
-          if (resolvedStatus) body.status   = resolvedStatus;
-          if (dueDate)        body.due_date = dueDate;
+          if (resolvedStatus) body.status      = resolvedStatus;
+          if (dueDate)        body.due_date    = dueDate;
+          if (descricao)      body.description = descricao;
           if (Object.keys(body).length) await api("PUT", `/task/${existing.id}`, body);
           process.stdout.write(".");
           updated++;

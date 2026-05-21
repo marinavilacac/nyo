@@ -1,6 +1,6 @@
-NYO × Courchevel · Brand,,,,,,,,
-Entregas do time. Preencha 1 linha por entrega. Mudanças aqui aparecem na dashboard.,,,,,,,,
-id,entrega,empreendimento,tipo,prazo_dashboard,data_entregue,status,link_drive,dependencia_cliente
+NYO × Courchevel · Brand,,,,,,,,,
+Entregas do time. Preencha 1 linha por entrega. Mudanças aqui aparecem na dashboard.,,,,,,,,,
+id,entrega,empreendimento,tipo,prazo_dashboard,data_entregue,status,link_drive,dependencia_cliente,descricao
 b001,Brief interno Brand (sessão equipe),Cross,Material,2026-05-11,2026-05-11,Concluído,,Não
 b002,Pesquisa de mercado e referências,Cross,Material,2026-05-11,2026-05-11,Concluído,,Não
 b003,Análise visual de concorrentes (3 empreendimentos),Cross,Material,2026-05-11,2026-05-11,Concluído,,Não

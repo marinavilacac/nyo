@@ -1,6 +1,6 @@
-NYO × Courchevel · Tech,,,,,,,,
-Entregas do time. Preencha 1 linha por entrega. Mudanças aqui aparecem na dashboard.,,,,,,,,
-id,entrega,empreendimento,tipo,prazo_dashboard,data_entregue,status,link_drive,dependencia_cliente
+NYO × Courchevel · Tech,,,,,,,,,
+Entregas do time. Preencha 1 linha por entrega. Mudanças aqui aparecem na dashboard.,,,,,,,,,
+id,entrega,empreendimento,tipo,prazo_dashboard,data_entregue,status,link_drive,dependencia_cliente,descricao
 c001,Brief interno Tech,Cross,Setup,2026-05-11,2026-05-11,Concluído,,Não
 c002,Arquitetura dos 5 agentes IA,Cross,Arquitetura,2026-05-12,2026-05-12,Concluído,,Não
 c003,Dashboard operacional NYO × Courchevel,Cross,Dashboard,2026-05-12,2026-05-12,Concluído,,Não

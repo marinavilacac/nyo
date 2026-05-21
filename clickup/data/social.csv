@@ -1,6 +1,6 @@
-NYO × Courchevel · Social,,,,,,,,
-Entregas do time. Preencha 1 linha por entrega. Mudanças aqui aparecem na dashboard.,,,,,,,,
-id,entrega,empreendimento,tipo,prazo_dashboard,data_entregue,status,link_drive,dependencia_cliente
+NYO × Courchevel · Social,,,,,,,,,
+Entregas do time. Preencha 1 linha por entrega. Mudanças aqui aparecem na dashboard.,,,,,,,,,
+id,entrega,empreendimento,tipo,prazo_dashboard,data_entregue,status,link_drive,dependencia_cliente,descricao
 s001,Diagnóstico de redes sociais @courchevelinc,Courchevel,Análise,2026-05-11,2026-05-11,Concluído,,Não
 s002,Diagnóstico de redes sociais @allure.moema,Allure,Análise,2026-05-11,2026-05-11,Concluído,,Não
 s003,Diagnóstico de redes sociais Triunfo,Triunfo,Análise,2026-05-12,2026-05-12,Concluído,,Não
