@@ -184,17 +184,28 @@ async function main() {
       if (empOptionId) customFields.push({ id: empField.id, value: empOptionId });
 
       if (!clickupByName[key]) {
+        let taskId = null;
         try {
           const body = { name: row.entrega };
           if (resolvedStatus) body.status      = resolvedStatus;
           if (dueDate)        body.due_date    = dueDate;
           if (descricao)      body.description = descricao;
-          await api("POST", `/list/${list.id}/task`, body);
+          const created_task = await api("POST", `/list/${list.id}/task`, body);
+          taskId = created_task.id;
           process.stdout.write("C");
           created++;
         } catch (err) {
           console.error(`\n  ERRO criar "${row.entrega}": ${err.message}`);
           erros++;
+        }
+        // tenta setar campo Empreendimento — não para o processo se falhar
+        if (taskId && empOptionId) {
+          try {
+            await api("POST", `/task/${taskId}/field/${empField.id}`, { value: empOptionId });
+            process.stdout.write("e");
+          } catch (_) {
+            process.stdout.write("x");
+          }
         }
       } else {
         const existing = clickupByName[key];
@@ -210,6 +221,15 @@ async function main() {
           console.error(`\n  ERRO atualizar "${row.entrega}": ${err.message}`);
           erros++;
         }
+        // tenta setar campo Empreendimento na tarefa existente — não para o processo se falhar
+        if (empOptionId) {
+          try {
+            await api("POST", `/task/${existing.id}/field/${empField.id}`, { value: empOptionId });
+            process.stdout.write("e");
+          } catch (_) {
+            process.stdout.write("x");
+          }
+        }
       }
     }
     console.log("");
@@ -217,6 +237,7 @@ async function main() {
 
   console.log(`\nConcluído.`);
   console.log(`  C = criada (${created}) · . = atualizada (${updated}) · erros (${erros})`);
+  console.log(`  e = campo Empreendimento setado · x = campo bloqueado pelo plano (normal no plano gratuito)`);
 }
 
 main().catch(err => { console.error("\nERRO:", err.message); process.exit(1); });
