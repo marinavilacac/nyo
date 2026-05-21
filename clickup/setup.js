@@ -37,6 +37,19 @@ async function api(method, path, body) {
   return json;
 }
 
+<<<<<<< HEAD
+=======
+const STATUSES = [
+  { status: "Backlog",             color: "#6b6b6b", type: "open"   },
+  { status: "A iniciar",           color: "#0075ff", type: "open"   },
+  { status: "Em produção",         color: "#f2994a", type: "open"   },
+  { status: "Aguardando cliente",  color: "#e91e63", type: "open"   },
+  { status: "Recorrente",          color: "#7c3aed", type: "open"   },
+  { status: "Bloqueado",           color: "#ff0000", type: "open"   },
+  { status: "Aprovado / Concluído",color: "#00c875", type: "closed" },
+];
+
+>>>>>>> claude/create-folder-structure-Yk4HJ
 const LISTS = [
   "Operação Cliente",
   "Tech",
@@ -124,6 +137,7 @@ const CUSTOM_FIELDS = [
 ];
 
 async function createCustomFields(listId) {
+<<<<<<< HEAD
   const { fields: existing } = await api("GET", `/list/${listId}/field`);
   const fieldMap = {};
   for (const field of CUSTOM_FIELDS) {
@@ -147,6 +161,19 @@ async function createCustomFields(listId) {
       fieldMap[field.name] = { id: created.id, options: optionMap };
       process.stdout.write(".");
     }
+=======
+  const fieldMap = {};
+  for (const field of CUSTOM_FIELDS) {
+    const created = await api("POST", `/list/${listId}/field`, field);
+    const optionMap = {};
+    if (field.type === "drop_down" && created.type_config?.options) {
+      for (const opt of created.type_config.options) {
+        optionMap[opt.name] = opt.orderindex;
+      }
+    }
+    fieldMap[field.name] = { id: created.id, options: optionMap };
+    process.stdout.write(".");
+>>>>>>> claude/create-folder-structure-Yk4HJ
   }
   return fieldMap;
 }
@@ -157,6 +184,7 @@ async function main() {
   // 1. Workspaces
   const { teams } = await api("GET", "/team");
   if (!teams.length) { console.error("Nenhum workspace encontrado."); process.exit(1); }
+<<<<<<< HEAD
 
   let workspace;
   const workspaceIdEnv = process.env.CLICKUP_WORKSPACE_ID;
@@ -171,6 +199,9 @@ async function main() {
     console.log("\nDefina CLICKUP_WORKSPACE_ID=<id> no .env e rode novamente.");
     process.exit(0);
   }
+=======
+  const workspace = teams[0];
+>>>>>>> claude/create-folder-structure-Yk4HJ
   console.log(`Workspace: ${workspace.name} (${workspace.id})`);
 
   // 2. Spaces
@@ -193,6 +224,7 @@ async function main() {
   }
   console.log(`Space: ${space.name} (${space.id})`);
 
+<<<<<<< HEAD
   // 3. Folder "Courchevel" (reutiliza se já existir)
   console.log('\nBuscando folder "Courchevel"...');
   const { folders } = await api("GET", `/space/${space.id}/folder?archived=false`);
@@ -217,6 +249,23 @@ async function main() {
       list = await api("POST", `/folder/${folder.id}/list`, { name: listName });
       process.stdout.write(`OK (${list.id}) · campos: `);
     }
+=======
+  // 3. Folder "Courchevel"
+  console.log('\nCriando folder "Courchevel"...');
+  const folder = await api("POST", `/space/${space.id}/folder`, { name: "Courchevel" });
+  console.log(`  OK · folder id: ${folder.id}`);
+
+  // 4. Listas + campos customizados
+  const listIds = {};
+  const fieldMaps = {};
+  for (const listName of LISTS) {
+    process.stdout.write(`Criando lista "${listName}"... `);
+    const list = await api("POST", `/folder/${folder.id}/list`, {
+      name: listName,
+      status: STATUSES,
+    });
+    process.stdout.write(`OK (${list.id}) · campos: `);
+>>>>>>> claude/create-folder-structure-Yk4HJ
     fieldMaps[listName] = await createCustomFields(list.id);
     listIds[listName] = list.id;
     console.log(" OK");

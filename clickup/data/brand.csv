@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 NYO × Courchevel · Brand,,,,,,,,
 Entregas do time. Preencha 1 linha por entrega. Mudanças aqui aparecem na dashboard.,,,,,,,,
 id,entrega,empreendimento,tipo,prazo_dashboard,data_entregue,status,link_drive,dependencia_cliente
@@ -16,3 +17,33 @@ b020,Naming Novo Premium (3-5 propostas),Premium,Naming,2026-05-21,,Aguardando c
 b021,Identidade visual Novo Premium,Premium,Identidade,2026-07-15,,Backlog,,Sim
 b022,Manual de marca Novo Premium,Premium,Manual,2026-07-22,,Backlog,,Sim
 b023,"Assets digitais Novo Premium (feed, stories, banners)",Premium,Material,2026-07-29,,Backlog,,Sim
+=======
+NYO × Courchevel · Brand,,,,,,,,
+Entregas do time. Preencha 1 linha por entrega. Mudanças aqui aparecem na dashboard.,,,,,,,,
+id,entrega,empreendimento,tipo,prazo_dashboard,data_entregue,status,link_drive,dependencia_cliente
+b001,Brief interno Brand (sessão equipe),Cross,Material,2026-05-11,2026-05-11,Concluído,,Não
+b002,Pesquisa de mercado e referências,Cross,Material,2026-05-11,2026-05-11,Concluído,,Não
+b003,Análise visual de concorrentes (3 empreendimentos),Cross,Material,2026-05-11,2026-05-11,Concluído,,Não
+b004,"Audit das identidades existentes (Allure, Triunfo, Courchevel)",Cross,Material,2026-05-12,2026-05-12,Concluído,,Não
+b005,Estudo de naming inicial (rascunho interno),Premium,Naming,2026-05-12,2026-05-12,Concluído,,Não
+b006,Briefing de imersão Branding enviado ao cliente,Premium,Material,2026-05-11,2026-05-11,Concluído,,Sim
+b007,Proposta de mood board (3 empreendimentos),Cross,Material,2026-05-14,,Em produção,,Não
+b010,Brandbook Courchevel (institucional),Courchevel,Material,2026-05-15,,Em produção,,Não
+b011,Brandbook Triunfo,Triunfo,Material,2026-05-15,,Em produção,,Não
+b012,Brandbook Allure,Allure,Material,2026-05-15,,Em produção,,Não
+b013,Brandbook Chevalier,Chevalier,Material,2026-05-15,,Em produção,,Não
+b020,Naming Novo Premium (3-5 propostas),Premium,Naming,2026-05-21,,Aguardando cliente,,Sim
+b021,Identidade visual Novo Premium,Premium,Identidade,2026-07-15,,Backlog,,Sim
+b022,Manual de marca Novo Premium,Premium,Manual,2026-07-22,,Backlog,,Sim
+b023,"Assets digitais Novo Premium (feed, stories, banners)",Premium,Material,2026-07-29,,Backlog,,Sim
+b030,Linha editorial @courchevelinc,Courchevel,Material,2026-05-25,,Backlog,,Não
+b031,Linha editorial @allure.moema,Allure,Material,2026-05-25,,Backlog,,Não
+b032,Linha editorial @triunfo,Triunfo,Material,2026-05-25,,Backlog,,Não
+b033,"Primeiros 6 posts prontos (2 Cox + 2 Allure + 2 Triunfo)",Cross,Material,2026-05-26,,Backlog,,Não
+b034,Repaginação @courchevelinc,Courchevel,Material,2026-05-28,,Backlog,,Não
+b035,Repaginação @allure.moema,Allure,Material,2026-05-28,,Backlog,,Não
+b036,Criação do zero @triunfo,Triunfo,Material,2026-05-26,,Backlog,,Não
+b037,Repaginação @chevalier,Chevalier,Material,,,Aguardando cliente,,Sim
+b038,Direção criativa gravação Triunfo,Triunfo,Material,2026-05-28,,Backlog,,Não
+b039,"Direção criativa gravação Allure + apresentação naming",Allure,Material,2026-05-29,,Backlog,,Não
+>>>>>>> claude/create-folder-structure-Yk4HJ

@@ -1,0 +1,131 @@
+{
+  "header": {
+    "label": "NYO × COURCHEVEL",
+    "kind": "Ata de Reunião",
+    "title": "Brand · Brooklyn e Allure",
+    "subtitle": "Briefing de identidade visual, correção de escopo do Brooklyn e estratégia de rebranding do Allure Moema"
+  },
+  "ficha": {
+    "cliente": "Courchevel Inc",
+    "data": "15 de maio de 2026",
+    "modalidade": "Online · gravada",
+    "duracao": "~36 minutos"
+  },
+
+  "contexto": [
+    "Reunião de Brand convocada no dia seguinte ao onboarding, conforme acordo firmado em 14/05. Pauta exclusiva: identidade visual dos novos empreendimentos, com foco no Brooklyn e no rebranding do Allure Moema.",
+    "Gustavo Araújo conduziu a sessão explicando o processo de briefing de identidade e os parâmetros visuais que a equipe de design precisa para iniciar o trabalho. A reunião também corrigiu uma percepção equivocada da equipe NYO sobre o Brooklyn, que foi reposicionado como hotel 100% focado em hospedagem, e não como empreendimento residencial de venda."
+  ],
+
+  "participantes": {
+    "cliente": [
+      { "nome": "Joelson Dos Santos Teixeira Delmondes", "papel": "Founder", "obs": "aprovador estratégico de marca e direção de produto" },
+      { "nome": "Enzo Delmondes", "papel": "Gestor Comercial", "obs": "decisor único do dia a dia" }
+    ],
+    "nyo": [
+      { "nome": "Marina Vilaça", "papel": "PM · Ponto focal único de comunicação" },
+      { "nome": "Gustavo Araújo", "papel": "Brand & Design · condutor da reunião" },
+      { "nome": "França", "papel": "Brand & Design" }
+    ]
+  },
+
+  "decisoes": [
+    {
+      "titulo": "Brooklyn é hotel, não empreendimento residencial",
+      "descricao": "Joelson corrigiu formalmente a percepção da equipe de design: o Brooklyn é um hotel 100% focado em hospedagem, com serviços de restaurante, minimercado, lavanderia, recepção bilíngue e valet. Não há unidades para venda. Estadia média estimada em curta duração, similar aos 2,3 dias do Allure Moema. A equipe de design deve tratar o projeto como produto hoteleiro, não imobiliário residencial."
+    },
+    {
+      "titulo": "Identidade visual não deve projetar luxo excessivo",
+      "descricao": "Para o Brooklyn, a identidade visual deve transmitir valor sem criar percepção de preço inacessível. Gustavo alertou para o risco de uma marca excessivamente sofisticada afastar potenciais hóspedes pelo receio de tarifas altas, citando caso análogo em marca de alimentação fitness."
+    },
+    {
+      "titulo": "Estética de solidez arquitetônica para Courchevel e Triunfo",
+      "descricao": "França apresentou referências visuais para a Courchevel institucional e o Triunfo: estilo fotográfico com foco em concreto, detalhes arquitetônicos e solidez construtiva, em vez de experiência de moradia. Objetivo é transmitir confiança e rigidez de produto."
+    },
+    {
+      "titulo": "Soft rebrand do Allure Moema",
+      "descricao": "Estratégia definida: adição gradual de 'Maia' ao nome atual, com eliminação progressiva do nome antigo para evitar ruptura brusca de identidade. Objetivo é diferenciar a operação Courchevel dos outros operadores que usam o nome 'Allure Moema' em plataformas de reserva e geram avaliações negativas indevidamente atribuídas ao grupo."
+    }
+  ],
+
+  "acordos": [
+    {
+      "titulo": "Brooklyn · Novo Empreendimento Premium",
+      "paragrafos": [
+        "Empreendimento classificado como hotel com serviços hoteleiros completos, competindo com grandes redes, apesar de não possuir registro oficial de hotel na prefeitura. Serviços confirmados: restaurante, minimercado, lavanderia, recepção bilíngue e valet.",
+        "A identidade visual deve refletir hospitalidade e conveniência, calibrada para não parecer luxo extremo. O briefing de identidade preenchido pelo cliente é o pré-requisito para o início formal do trabalho de naming e ID visual."
+      ]
+    },
+    {
+      "titulo": "Allure Moema · Rebranding",
+      "paragrafos": [
+        "Problema operacional crítico: múltiplos operadores utilizam o nome 'Allure Moema' em plataformas de reserva (Booking, Google), causando confusão e avaliações negativas atribuídas ao grupo Courchevel por problemas de terceiros.",
+        "Estratégia aprovada: soft rebrand com adição de 'Maia' ao nome, de forma gradual, preservando reconhecimento de marca enquanto cria diferenciação progressiva. Gustavo conduzirá a análise de impacto visual e de percepção antes de qualquer alteração nas plataformas."
+      ]
+    },
+    {
+      "titulo": "Courchevel Institucional e Triunfo · Direção visual",
+      "paragrafos": [
+        "Referências visuais apresentadas por França apontam para estética de solidez arquitetônica: ênfase em concreto, detalhes de construção e design estrutural, em vez de imagens de moradia ou estilo de vida. Transmite confiança e rigor construtivo como diferencial de marca."
+      ]
+    },
+    {
+      "titulo": "Processo de briefing de identidade",
+      "paragrafos": [
+        "Gustavo explicou que o briefing coleta informações abstratas sobre estilo de vida, referências estéticas e temperamento de marca. Essas informações são o insumo que a equipe de design usa para converter conceitos em parâmetros técnicos e visuais concretos.",
+        "O preenchimento detalhado reduz rodadas de revisão e alinhamento. Diferentes perspectivas dentro da Courchevel (fundador e gestão comercial) enriquecem o resultado. Gustavo solicitou o máximo de detalhe possível para evitar reuniões adicionais."
+      ]
+    }
+  ],
+
+  "dependencia_cliente": {
+    "titulo": "Briefing de identidade é o pré-requisito para tudo",
+    "label": "Atenção",
+    "palette": "warm",
+    "texto": "Nenhuma entrega de Brand pode ser iniciada formalmente sem o briefing de identidade preenchido pela Courchevel. Naming, identidade visual, manual de marca e assets do Brooklyn dependem diretamente desse documento. O prazo contratual começa a contar da aprovação formal do briefing.",
+    "complemento": "O formulário já foi enviado pela NYO. Quanto mais detalhado o preenchimento, menor o número de rodadas de revisão e menor o risco de retrabalho com impacto no cronograma de entrega física do empreendimento."
+  },
+
+  "pendencias_cliente": [
+    ["Preencher briefing de identidade visual (formulário enviado pela NYO)", "Enzo + Joelson", "19 a 22/05"],
+    ["Enviar materiais técnicos do Brooklyn (nível de acabamento, estrutura física)", "Enzo", "19 a 22/05"]
+  ],
+
+  "pendencias_nyo": [
+    ["Análise de impacto visual e de percepção do rebranding Allure Moema", "Gustavo Araújo", "19 a 22/05"],
+    ["Enviar moodboard consolidado com curadoria visual e direção criativa dos novos empreendimentos", "Gustavo Araújo + França", "19 a 22/05"]
+  ],
+
+  "proximos_passos": [
+    {
+      "titulo": "Semana de 19 a 22 de maio",
+      "bullets": [
+        "Courchevel devolve briefing de identidade preenchido (Enzo + Joelson)",
+        "Enzo envia materiais técnicos do Brooklyn",
+        "Gustavo apresenta análise do rebranding Allure Moema",
+        "Gustavo + França enviam moodboard com direção criativa"
+      ]
+    },
+    {
+      "titulo": "Após recebimento do briefing aprovado",
+      "bullets": [
+        "NYO inicia processo de naming (prazo: 10 DU após aprovação do briefing)",
+        "Naming aprovado destrava início da identidade visual (prazo: 15 DU)"
+      ]
+    }
+  ],
+
+  "falas": [
+    { "autor": "Gustavo Araújo · sobre o temperamento de marca", "texto": "Os sentimentos de marca estão atrelados à confiança e facilidade, enquanto o tom de voz define como a empresa se comunica." },
+    { "autor": "Gustavo Araújo · sobre o risco de posicionamento excessivo", "texto": "É preciso cautela para não criar uma imagem luxuosa demais que afaste potenciais clientes pelo receio de preços altos." },
+    { "autor": "Joelson · sobre o Brooklyn", "texto": "O Brooklyn não é um empreendimento residencial para venda, mas um hotel 100% focado em hospedagem, com serviços como restaurante, minimercado, lavanderia, recepção bilíngue e valet." }
+  ],
+
+  "pontos_atencao": [
+    { "titulo": "Escopo do Brooklyn mal compreendido antes desta reunião", "descricao": "A equipe de design tratava o Brooklyn como imóvel residencial de venda. A correção foi feita nesta call. Verificar se outros membros do time NYO têm a mesma percepção equivocada e corrigir internamente." },
+    { "titulo": "Rebranding Allure Moema exige análise antes da execução", "descricao": "Alterações de nome em plataformas de reserva como Booking têm impacto em histórico de avaliações e SEO. A análise do Gustavo deve preceder qualquer mudança nas plataformas." },
+    { "titulo": "Briefing não preenchido trava o cronograma de Brand", "descricao": "O prazo contratual de entrega do naming (10 DU) e da identidade visual (15 DU) só começa a contar após aprovação formal do briefing. Atraso no preenchimento desloca todas as entregas subsequentes de Brand." }
+  ],
+
+  "assinatura": "Ata produzida em 15 de maio de 2026 pela NYO. Reunião gravada e transcrição arquivada no Drive oficial do projeto."
+}
