@@ -184,7 +184,7 @@ async function main() {
 
       if (!clickupByName[key]) {
         try {
-          const body = { name: row.entrega, custom_fields: customFields };
+          const body = { name: row.entrega };
           if (resolvedStatus) body.status   = resolvedStatus;
           if (dueDate)        body.due_date = dueDate;
           await api("POST", `/list/${list.id}/task`, body);
@@ -198,9 +198,8 @@ async function main() {
         const existing = clickupByName[key];
         try {
           const body = {};
-          if (resolvedStatus)      body.status        = resolvedStatus;
-          if (dueDate)             body.due_date       = dueDate;
-          if (customFields.length) body.custom_fields  = customFields;
+          if (resolvedStatus) body.status   = resolvedStatus;
+          if (dueDate)        body.due_date = dueDate;
           if (Object.keys(body).length) await api("PUT", `/task/${existing.id}`, body);
           process.stdout.write(".");
           updated++;
