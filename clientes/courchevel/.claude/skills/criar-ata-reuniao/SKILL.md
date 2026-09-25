@@ -34,13 +34,13 @@ O fluxo é em duas fases. Sempre nessa ordem.
 Após confirmação:
 
 ```bash
-cd /caminho/para/Claude-Marina-2.0
+cd clientes/courchevel
 node .claude/skills/criar-ata-reuniao/scripts/build_ata.js \
   06-reunioes/<slug-da-reuniao>/ata-content.json \
   06-reunioes/<slug-da-reuniao>/ata-<slug>.docx
 ```
 
-Pré-requisito: rodar `npm install` uma vez na raiz do projeto (instala a lib `docx`). Se der erro `Cannot find module 'docx'`, é isso.
+Pré-requisito: rodar `npm install` uma vez em `clientes/courchevel/` (instala a lib `docx`). Se der erro `Cannot find module 'docx'`, é isso.
 
 Arquivos gerados:
 - `ata-<slug>.docx`, entrega oficial. É o que vai pro cliente.
