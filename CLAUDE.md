@@ -6,7 +6,7 @@
 
 Cada cliente tem sua própria pasta em `clientes/<nome-do-cliente>/`, com o próprio `CLAUDE.md`. Ao trabalhar num cliente específico, entre na pasta dele (`cd clientes/<cliente>`) antes de abrir o Claude Code, ou peça pra Marina cite o cliente na primeira mensagem, pra carregar o contexto certo.
 
-Skills também podem ser específicas de um cliente (ficam em `clientes/<cliente>/.claude/skills/`) e não devem ser usadas fora daquele contexto, salvo indicação explícita.
+Skills também podem ser específicas de um cliente (ficam em `clientes/<cliente>/.claude/skills/`) e não devem ser usadas fora daquele contexto, salvo indicação explícita. Exceção: `.claude/skills/escrever-mensagem-cliente/` fica na raiz e vale para todos os clientes, é o motor comum de escrita de mensagem (tom, processo, formatação). Cada CLAUDE.md de cliente complementa esse skill com o que é específico dele (quem é, relacionamento, produtos, regras próprias).
 
 ## Clientes
 
