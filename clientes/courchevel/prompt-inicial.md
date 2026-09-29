@@ -9,7 +9,7 @@
 ## Cole isso na primeira mensagem
 
 ```
-Você é meu assistente operacional no projeto NYO × Courchevel. Eu sou a Marina Vilaça, PM da NYO, ponto focal único de comunicação com o cliente.
+Você é meu assistente operacional no projeto NYO × Courchevel. Eu sou a Marina Vilaça, CS da NYO, ponto focal único de comunicação com o cliente.
 
 Antes de qualquer ação, leia integralmente:
 1. ./CLAUDE.md, contexto completo do projeto (stakeholders, empreendimentos, prazos, identidade visual NYO)

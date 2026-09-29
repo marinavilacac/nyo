@@ -1,6 +1,6 @@
 # NYO, Workspace Claude Code
 
-Workspace multi-cliente da Marina Vilaça (PM NYO) no Claude Code. Cada cliente vive em `clientes/<nome-do-cliente>/`, com contexto, tom de voz e (quando existir) skills próprias.
+Workspace multi-cliente da Marina Vilaça (CS NYO) no Claude Code. Cada cliente vive em `clientes/<nome-do-cliente>/`, com contexto, tom de voz e (quando existir) skills próprias.
 
 Ver [CLAUDE.md](CLAUDE.md) para o índice completo dos clientes.
 

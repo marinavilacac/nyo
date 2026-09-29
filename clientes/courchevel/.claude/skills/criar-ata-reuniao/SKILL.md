@@ -7,7 +7,7 @@ description: Gera ata de reunião do projeto Courchevel no padrão visual oficia
 
 ## Quando ativar
 
-Toda vez que a Marina (ou Gabriel, ou outro PM) pedir um dos abaixo:
+Toda vez que a Marina (ou Gabriel, ou outra pessoa do time) pedir um dos abaixo:
 
 - "Gera a ata da reunião"
 - "Monta a ata do kickoff / da call X"

@@ -1,6 +1,6 @@
 # Pacote Claude Marina 2.0, Projeto NYO × Courchevel
 
-> Pacote operacional para a Marina Vilaça (PM NYO, ponto focal do projeto Courchevel) usar no Claude Code dela e gerar documentos do projeto no mesmo padrão visual que o Gabriel usa.
+> Pacote operacional para a Marina Vilaça (CS NYO, ponto focal do projeto Courchevel) usar no Claude Code dela e gerar documentos do projeto no mesmo padrão visual que o Gabriel usa.
 >
 > **Versão 2.0**, atualizada em 14/05/2026 com tudo que foi consolidado no onboarding oficial (14/05) e nas decisões pós-call.
 
@@ -36,7 +36,7 @@ NYO (GM SOLUCOES LTDA) é a agência contratada da Courchevel Inc para operar 4 
 |---|---|---|
 | Gabriel Soier | Sócio / Estratégia | Decisões estratégicas, visitas presenciais, calls críticas |
 | Pedro Lucena | Sócio / Estratégia | Mais presente que o padrão NYO neste projeto |
-| **Marina Vilaça** | **PM, ponto focal** | **Você.** Centraliza toda comunicação com Enzo. |
+| **Marina Vilaça** | **CS, ponto focal** | **Você.** Centraliza toda comunicação com Enzo. |
 | Caio Souza | Gestor de Tráfego | Pilar 2 (Tráfego) |
 | João | Tech | Pilar 3 (Tech, agentes IA, CRM, LPs) |
 | Gustavo Araújo + França | Brand & Design | Pilar 1 (Brand) |

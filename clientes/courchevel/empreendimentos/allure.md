@@ -111,7 +111,7 @@ Multilíngue, 53 páginas. Blog ativo com posts sobre turismo SP, trabalho remot
 | Matheus | Suporte aos agentes + Sistema de Precificação |
 | Guilherme | Edição dos Reels + arte de posts + assets da LP 2 |
 | João Batista | LP 2 + integração CRM/Dashboard |
-| Marina (você) | PM, único ponto de contato com o cliente |
+| Marina (você) | CS, único ponto de contato com o cliente |
 | Jhon | 1 diária por mês no Allure, aproximadamente 18 Reels por sessão |
 
 ---

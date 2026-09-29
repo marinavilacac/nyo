@@ -1,6 +1,6 @@
 # Workspace NYO, Claude Code da Marina
 
-> NYO (GM SOLUCOES LTDA) é a agência onde a Marina Vilaça trabalha como PM. Este repositório reúne o contexto de **todos os clientes** que ela atende no Claude Code, um por pasta em `clientes/`.
+> NYO (GM SOLUCOES LTDA) é a agência onde a Marina Vilaça trabalha como CS (Customer Success). Este repositório reúne o contexto de **todos os clientes** que ela atende no Claude Code, um por pasta em `clientes/`.
 
 ## Como este repositório está organizado
 

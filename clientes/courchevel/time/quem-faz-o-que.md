@@ -134,7 +134,7 @@ Completa o trio operacional. Reporta ao Caio.
 
 ## Gestão e relação com cliente
 
-### Marina Vilaça (você) · PM · Único ponto de contato com cliente
+### Marina Vilaça (você) · CS · Único ponto de contato com cliente
 
 **O que você faz:**
 - **Único ponto de contato externo com o cliente** (WhatsApp, Drive, atas, lembretes).

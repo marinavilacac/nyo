@@ -112,7 +112,7 @@ Zona Sul de São Paulo, IDH 0,935, comparável a países desenvolvidos. Tranquil
 | João Batista | LP 1 Triunfo + integração CRM |
 | Guilherme | Arte de posts + edição de Reels (bateria do Jhon) + assets da LP |
 | Gustavo | Direção de marca (tom alinhado ao briefing aprovado) |
-| Marina (você) | PM, único ponto de contato com o cliente |
+| Marina (você) | CS, único ponto de contato com o cliente |
 | Jhon | 1 diária por mês no Triunfo, aproximadamente 18 Reels por sessão |
 
 ---
