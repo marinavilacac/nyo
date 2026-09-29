@@ -20,3 +20,13 @@ Skills também podem ser específicas de um cliente (ficam em `clientes/<cliente
 ## Regra geral entre clientes
 
 Não misturar contexto, tom ou dados de um cliente na conversa de outro. Cada pasta é autocontida. Informação sensível (senhas, tokens, dados pessoais de terceiros) não entra em nenhum CLAUDE.md, nem daqui nem dos clientes.
+
+Luiz, Arthur e Déa & Tiba são "experts" no sentido da Casa de Copy (criadores com produto próprio, operados pela NYO em regime de agência/lançamento). O conteúdo dos CLAUDE.md deles vem do "Guia dos Experts" (Braian, copy estrategista) e é **uso interno da equipe, nunca repassado aos próprios experts**. O Arthur em particular exige que nenhum material endereçado a ele cite qualquer outra conta da casa.
+
+## Metodologia Casa de Copy (Luiz, Arthur, Déa & Tiba)
+
+Regras que valem para os três experts, vindas do "Guia dos Experts":
+
+1. **Quem decide o quê.** O operador decide estratégia, preço e funil. O expert aprova a própria voz e tem veto. A NYO produz, sobe e mede.
+2. **Aprovado não é validado.** Aprovado é quando o operador ou o expert gostou. Validado é quando rodou com dinheiro, contra um controle, e bateu a meta.
+3. **Todo ROAS tem uma régua.** O ROAS do gerenciador, o da DRE (lucro real) e o de benchmark são números diferentes. Antes de repetir um número, perguntar de qual régua ele é.
