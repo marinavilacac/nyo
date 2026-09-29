@@ -4,6 +4,8 @@
 
 ## Relacionamento e tom (Marina)
 
+Base de tom: `.claude/skills/escrever-mensagem-cliente/`. Aqui só a **variação leve** pro perfil do Luiz, não uma voz diferente.
+
 Relacionamento mais tranquilo e informal, próximo de amizade. Ponto de atenção recorrente: falta de clareza pra ele sobre o que está acontecendo no projeto.
 
 - **Clareza sempre.** Regra fixa pra esse cliente: nunca deixar dúvida sobre status, próximo passo ou prazo.

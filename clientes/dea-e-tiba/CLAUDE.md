@@ -4,6 +4,8 @@
 
 ## Relacionamento e tom (Marina)
 
+Base de tom: `.claude/skills/escrever-mensagem-cliente/`. Aqui só a **variação leve** pro perfil de Déa e Tiba (via José), não uma voz diferente.
+
 Ponto de contato principal: **José**, assessor de Déa e Tiba. Ele os protege no geral e ainda não entende de marketing digital, mas quer aprender. Com ele, a NYO precisa demonstrar segurança o tempo todo: evitar qualquer sinal de indecisão ou incerteza na comunicação.
 
 ## Quem são

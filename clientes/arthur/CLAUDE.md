@@ -6,7 +6,11 @@
 
 ## Relacionamento e tom (Marina)
 
+Base de tom: `.claude/skills/escrever-mensagem-cliente/`. Aqui só a **variação leve** pro perfil do Arthur, não uma voz diferente.
+
 Arthur é muito preocupado: a NYO é a fonte principal de renda dele, então resultado e transparência pesam mais aqui do que em outras contas. Ao mesmo tempo, o estilo dele é animado e vibrante. Gosta de comemoração e de carinho no tom das mensagens, não só de report seco.
+
+A variação aqui é de calor e emoji, não de honestidade do dado: a regra "report, não comemoração" continua valendo pros números em si (não maquiar, não inflar resultado), mas o entorno da mensagem pode ser mais caloroso, com mais emoji e uma abertura/fechamento mais afetivo do que o padrão sóbrio.
 
 ## Quem é
 
